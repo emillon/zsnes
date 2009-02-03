@@ -1,0 +1,72 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## originally: replace_crc32.dpatch by Javier Serrano Polo <jasp00@terra.es>
+##
+## DP: CRC32 is now a keyword in nasm, replace it by RomCRC32.
+
+@DPATCH@
+diff -ur zsnes-1.510.orig/src/init.asm zsnes-1.510/src/init.asm
+--- zsnes-1.510.orig/src/init.asm	2007-01-23 19:51:00.000000000 +0100
++++ zsnes-1.510/src/init.asm	2007-10-23 08:23:56.000000000 +0200
+@@ -892,7 +892,7 @@
+ SECTION .bss
+ NEWSYM IPSPatched, resb 1
+ NEWSYM Checksumvalue, resw 1
+-NEWSYM CRC32, resd 1
++NEWSYM RomCRC32, resd 1
+ NEWSYM SramExists,    resb 1
+ NEWSYM NumofBanks,    resd 1
+ NEWSYM NumofBytes,    resd 1
+diff -ur zsnes-1.510.orig/src/initc.c zsnes-1.510/src/initc.c
+--- zsnes-1.510.orig/src/initc.c	2007-01-20 01:02:24.000000000 +0100
++++ zsnes-1.510/src/initc.c	2007-10-23 08:35:47.000000000 +0200
+@@ -1649,7 +1649,7 @@
+   }
+ }
+ 
+-extern unsigned int MsgCount, MessageOn, CRC32;
++extern unsigned int MsgCount, MessageOn, RomCRC32;
+ extern char *Msgptr;
+ unsigned int SPC7110Entries;
+ 
+@@ -1798,9 +1798,9 @@
+   // 42 is the answer, and the uCONSRT standard
+ 
+   // calculate CRC32 for the whole ROM, or Add-on ROM only
+-  CRC32 = (SplittedROM) ? crc32(0, ROM+addOnStart, addOnSize) : crc32(0, ROM, NumofBytes);
++  RomCRC32 = (SplittedROM) ? crc32(0, ROM+addOnStart, addOnSize) : crc32(0, ROM, NumofBytes);
+   // place CRC32 on line
+-  sprintf(CSStatus3+32, "%08X", CRC32);
++  sprintf(CSStatus3+32, "%08X", RomCRC32);
+ 
+   i = (SplittedROM) ? infoloc + 0x1E + addOnStart: infoloc + 0x1E;
+ 
+diff -ur zsnes-1.510.orig/src/zmovie.c zsnes-1.510/src/zmovie.c
+--- zsnes-1.510.orig/src/zmovie.c	2007-01-20 21:30:27.000000000 +0100
++++ zsnes-1.510/src/zmovie.c	2007-10-23 08:37:04.000000000 +0200
+@@ -75,7 +75,7 @@
+ typedef unsigned __int64 uint64;
+ #endif
+ 
+-extern unsigned int versionNumber, CRC32, cur_zst_size, MsgCount, MessageOn;
++extern unsigned int versionNumber, RomCRC32, cur_zst_size, MsgCount, MessageOn;
+ extern unsigned int JoyAOrig, JoyBOrig, JoyCOrig, JoyDOrig, JoyEOrig;
+ extern unsigned char GUIReset, ReturnFromSPCStall, GUIQuit;
+ extern unsigned char CMovieExt, mencoderExists, lameExists;
+@@ -932,7 +932,7 @@
+     size_t filename_len = strlen(filename);
+     strncpy(zmv_vars.header.magic, "ZMV", 3);
+     zmv_vars.header.zsnes_version = versionNumber & 0xFFFF;
+-    zmv_vars.header.rom_crc32 = CRC32;
++    zmv_vars.header.rom_crc32 = RomCRC32;
+     zmv_vars.header.zst_size = cur_zst_size;
+     zmv_vars.header.zmv_flag.start_method = (enum zmv_start_methods)MovieStartMethod;
+     zmv_vars.header.zmv_flag.video_mode = romispal ? zmv_vm_pal : zmv_vm_ntsc;
+@@ -1252,7 +1252,7 @@
+       Msgptr = "MOVIE STARTED.";
+     }
+ 
+-    if (zmv_vars.header.rom_crc32 != CRC32)
++    if (zmv_vars.header.rom_crc32 != RomCRC32)
+     {
+       static char buffer[29]; //"ROM MISMATCH. NEED: 01234567"
+       sprintf(buffer, "ROM MISMATCH. NEED: %08X", zmv_vars.header.rom_crc32);

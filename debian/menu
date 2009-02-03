@@ -1,0 +1,6 @@
+?package(zsnes): \
+	needs="X11" \
+	section="Applications/Emulators" \
+	title="ZSNES" \
+	command="/usr/bin/zsnes" \
+	icon="/usr/share/pixmaps/zsnes.xpm"

@@ -1,0 +1,57 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## gcc-4.3-ftbfs.dpatch by Ian Beckwith <ianb@erislabs.net>
+##
+## DP: Fix build failures with gcc-4.3
+
+@DPATCH@
+diff -urNad zsnes-1.510~/src/parsegen.cpp zsnes-1.510/src/parsegen.cpp
+--- zsnes-1.510~/src/parsegen.cpp	2007-01-15 23:58:43.000000000 +0000
++++ zsnes-1.510/src/parsegen.cpp	2008-04-10 22:16:37.000000000 +0100
+@@ -26,6 +26,7 @@
+ #include <iostream>
+ #include <fstream>
+ #include <string>
++#include <cstring>
+ #include <vector>
+ #include <algorithm>
+ #include <sstream>
+@@ -1828,7 +1829,7 @@
+   }
+ }
+ 
+-int main(size_t argc, const char **argv)
++int main(int argc, const char **argv)
+ {
+   const char *cheader_file = 0;
+   bool compile = false;
+diff -urNad zsnes-1.510~/src/tools/depbuild.cpp zsnes-1.510/src/tools/depbuild.cpp
+--- zsnes-1.510~/src/tools/depbuild.cpp	2006-12-27 11:04:05.000000000 +0000
++++ zsnes-1.510/src/tools/depbuild.cpp	2008-04-10 22:17:07.000000000 +0100
+@@ -24,6 +24,7 @@
+ #include <iostream>
+ #include <string>
+ #include <cstdio>
++#include <cstdlib>
+ using namespace std;
+ 
+ #include "fileutil.h"
+@@ -183,7 +184,7 @@
+   }
+ }
+ 
+-int main(size_t argc, const char *const *const argv)
++int main(int argc, const char *const *const argv)
+ {
+   if (argc < 5)
+   {
+diff -urNad zsnes-1.510~/src/tools/strutil.h zsnes-1.510/src/tools/strutil.h
+--- zsnes-1.510~/src/tools/strutil.h	2006-12-27 11:04:05.000000000 +0000
++++ zsnes-1.510/src/tools/strutil.h	2008-04-10 22:16:56.000000000 +0100
+@@ -23,6 +23,7 @@
+ #define STRUTIL_H
+ 
+ #include <string>
++#include <cstring>
+ #include <vector>
+ #include <cctype>
+ 

@@ -1,0 +1,18 @@
+Source: zsnes
+Section: otherosfs
+Priority: optional
+Maintainer: Joshua Kwan <joshk@triplehelix.org>
+Build-Depends: debhelper (>= 4), nasm, libsdl1.2-dev (>= 1.2.2-3.1), zlib1g-dev, sharutils, xutils, libpng12-dev | libpng-dev, xlibmesa-gl-dev, dpatch, libao-dev
+Standards-Version: 3.7.3
+
+Package: zsnes
+Architecture: i386
+Depends: ${shlibs:Depends}
+Description: Emulator of the Super Nintendo Entertainment System (TM)
+ ZSNES allows you to play classic games written for the "SNES" game
+ console on a GNU/Linux system. It supports advanced features such as
+ multiplayer gameplay over a TCP/IP network.
+ .
+ Please note that many separately-available games playable under this
+ emulator are non-free. See /usr/share/doc/zsnes/README.Debian for more
+ information.

@@ -1,0 +1,151 @@
+zsnes (1.510-2.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix the debian/rules clean problem, with a patch courtesy of
+    Gunnar Wolf <gwolf@gwolf.org> (closes: #513205)
+  * Urgency medium to fix RC bug in testing
+
+ -- Vincent Fourmond <fourmond@debian.org>  Tue, 03 Feb 2009 21:52:28 +0100
+
+zsnes (1.510-2.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Fix gcc-4.3 FTBFS (Closes: #474804).
+
+ -- Ian Beckwith <ianb@erislabs.net>  Thu, 10 Apr 2008 22:20:59 +0100
+
+zsnes (1.510-2) unstable; urgency=low
+
+  * Acknowledge NMU, closes: #447366
+  * Fix build failure with g++ 4.2, closes: #459033
+  * Bump Standards-Version to 3.7.3
+  * Move menu file from Apps to Applications. I think this closes: #443789.
+
+ -- Joshua Kwan <joshk@triplehelix.org>  Thu, 10 Jan 2008 20:49:18 -0800
+
+zsnes (1.510-1.1) unstable; urgency=low
+
+  * Non-maintainer upload to fix RC bug.
+  * Fix FTBFS, CRC32 is now a keyword in nasm, replace it by RomCRC32.
+    Patch by Javier Serrano Polo <jasp00@terra.es>. (Closes: #447366)
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Mon, 19 Nov 2007 03:26:31 +0100
+
+zsnes (1.510-1) unstable; urgency=low
+
+  * New upstream release - all patches merged. closes: #380734, #419270
+  * Add a .desktop file, thanks Nicholas Wheeler. closes: #367942
+  * Include a ton of documentation that ships with the tarball.
+    closes: #392143 
+
+ -- Joshua Kwan <joshk@triplehelix.org>  Mon, 04 Jun 2007 21:46:47 -0700
+
+zsnes (1.420-1) unstable; urgency=low
+
+  * New maintainer, acknowledge NMU. (closes: #301611, #293061)
+  * Switch to dpatch.
+  * Add patch from upstream CVS to fix 100% CPU problem while in GUI.
+    (closes: #319299)
+  * Since we do provide at least one sample ROM, there is absolutely
+    no reason to leave this in contrib. Move to main (closes: #313137)
+  * Add the Debian changelog back. The upstream changelog is no longer
+    available, however. (closes: #320717)
+
+ -- Joshua Kwan <joshk@triplehelix.org>  Mon,  9 Jan 2006 18:19:09 -0800
+
+zsnes (1.420-0.1) unstable; urgency=low
+
+  * Non-maintainer upload
+  * New upstream release (Closes: #293061)
+  * Compiled with g++-4.0 to comply to the C++ ABI transition
+  * Build-depend on `automake' to fix FTBFS (Closes: #301611)
+
+ -- Philipp Kern <pkern@debian.org>  Sun, 24 Jul 2005 15:58:59 +0000
+
+zsnes (1.400-1) unstable; urgency=low
+
+  * New upstream version (Closes: #287161, #287998)
+  * Fix manpage (Closes: #290463)
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Mon, 17 Jan 2005 18:53:03 -0800
+
+zsnes (1.360-2) unstable; urgency=low
+
+  * Enable OpenGL (Closes: #240397)
+  * Apply save state patch (Closes: #199461, #164622)
+  * Apply enhanced joystick support patch (Closes: #220270)
+  * Add menu entry (Closes: #185024)
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Mon, 06 Sep 2004 22:29:19 -0700
+
+zsnes (1.360-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Sun, 11 Aug 2002 00:48:10 -0700
+
+zsnes (1.337-4.1) unstable; urgency=low
+
+  * Non maintainer upload.
+  * stray '\' was breaking build (closes: #146802)
+  * fix spelling error in description (closes: #125584)
+
+ -- David Kimdon <dwhedon@debian.org>  Sun,  9 Jun 2002 21:25:42 -0700
+
+zsnes (1.337-4) unstable; urgency=low
+
+  * Fix build with new NASM
+  * Update build-depends (Closes: #123725)
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Sun, 16 Dec 2001 14:31:19 -0800
+
+zsnes (1.337-3) unstable; urgency=medium
+
+  * Recompile against new libsdl1.2debian
+  * Update Build-Depends accordingly
+  * Bump standards-version
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Sat, 20 Oct 2001 20:38:34 -0700
+
+zsnes (1.337-2) unstable; urgency=medium
+
+  * Don't let configure detect CPU-specific optimizations. Compile with
+    -mcpu=pentiumpro instead. (Closes: #114342)
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Wed,  3 Oct 2001 11:35:26 -0700
+
+zsnes (1.337-1) unstable; urgency=low
+
+  * New upstream release
+     * Major binary size improvements.
+     * Build system was converted to autoconf :(
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Sun, 30 Sep 2001 20:01:43 -0700
+
+zsnes (1.30b-1) unstable; urgency=low
+
+  * New upstram version
+  * Install more docs
+  * Include example cartridge in /usr/share/doc/zsnes/examples
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Thu, 21 Jun 2001 16:57:42 -0700
+
+zsnes (1.28-1) unstable; urgency=low
+
+  * New upstream version. Optimization fix applied upstream.
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Wed, 30 May 2001 14:37:40 -0700
+
+zsnes (1.25-1) unstable; urgency=low
+
+  * New upstream release. Fixes bugs and adds optimizations. Double-buffering
+    is now supported on Linux.
+  * Wrote a fix for a bug triggered with compiler optimizations. Sent upstream.
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Tue, 15 May 2001 21:05:32 -0700
+
+zsnes (1.20-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Aaron Lehmann <aaronl@vitelus.com>  Tue,  1 May 2001 19:40:50 -0700

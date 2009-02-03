@@ -1,0 +1,20 @@
+zsnes for Debian
+----------------
+
+The zsnes package is not portable to non-i386 architectures because of
+the fact that most of it is writen in i386 assembly.
+
+The Debian tar file of zsnes' source is identical to the upstream
+source except that a few object files in src/obj were removed. These
+files do not have surviving source code, but are not used in the Linux
+build and have been removed to avoid debate as to whether they are free
+software.
+
+zsnes itself is available under the GNU GPL. However, almost all of the
+"ROMs" that it is designed to run are distributed under stricter licenses,
+which may not permit redistribution. We advise you to pay attention to
+license information when obtaining such software. Debian claims no
+responsibility for any unlicensed usage of third-party software under
+zsnes.
+
+ -- Aaron Lehmann <aaronl@vitelus.com>, Tue,  1 May 2001 19:40:28 -0700

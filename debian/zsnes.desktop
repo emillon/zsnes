@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=zsnes
+Comment=A Super Nintendo Entertainment System (TM) emulator
+Exec=zsnes
+Icon=zsnes.xpm
+Terminal=false
+Type=Application
+Categories=Application;Game;2DGraphics;Emulator

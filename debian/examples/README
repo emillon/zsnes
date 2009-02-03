@@ -1,0 +1,7 @@
+Included here is a simple test cartridge that paints a Debian logo in the
+emulator's window. To try it, simply run
+`zsnes /usr/share/doc/zsnes/examples/debian.smc.gz'.
+
+The source code is available in the source/ subdirectory under the GNU General
+Public License. Unfortunately, the necessary tools for its assembly are not yet
+packaged in Debian.

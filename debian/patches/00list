@@ -1,0 +1,3 @@
+gcc-fno-rtti
+replace_crc32
+gcc-4.3-ftbfs
