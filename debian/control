@@ -2,7 +2,7 @@ Source: zsnes
 Section: otherosfs
 Priority: optional
 Maintainer: Etienne Millon <etienne.millon@gmail.com>
-Build-Depends: debhelper (>= 4), nasm, libsdl1.2-dev (>= 1.2.2-3.1), zlib1g-dev, sharutils, xutils, libpng12-dev | libpng-dev, xlibmesa-gl-dev, dpatch, libao-dev
+Build-Depends: debhelper (>= 4), nasm, libsdl1.2-dev (>= 1.2.2-3.1), zlib1g-dev, sharutils, libpng12-dev | libpng-dev, dpatch, libao-dev
 Standards-Version: 3.7.3
 
 Package: zsnes
