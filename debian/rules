@@ -2,92 +2,100 @@
 # debian/rules for zsnes
 # 2001-2005 Aaron Lehmann <aaronl@vitelus.com>
 # 2006 Joshua Kwan <joshk@triplehelix.org>
+# 2010 Etienne Millon <etienne.millon@gmail.com>
+#
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+export DH_OPTIONS=-v
 
-patch-stamp:
-	dpatch apply-all
-	touch $@
+%:
+	dh $@ --sourcedirectory=src
 
-unpatch:
-	dpatch deapply-all
-	rm -f patch-stamp
+override_dh_auto_configure:
+	dh_auto_configure --sourcedirectory=src -- --enable-opengl --disable-cpucheck --enable-release --disable-debugger --enable-libao force_arch=i486
 
-build: patch-stamp build-stamp
-build-stamp:
-	dh_testdir
-
-	cd src && ./configure --enable-opengl --disable-cpucheck --enable-release --disable-debugger --enable-libao force_arch=i486 && $(MAKE)
-
-	touch $@
-
-clean: unpatch
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
-
-# 'make distclean' appears to be broken
-	# [ ! -f src/Makefile ] || cd src && $(MAKE) distclean
+override_dh_clean:
 	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
-
 	dh_clean
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
+# dh_override_install:
+# 	dh_testdir
+# 	dh_testroot
+# 	dh_clean -k
+# 	dh_installdirs
+# 	install -D src/zsnes debian/zsnes/usr/bin/zsnes
+# 	install -D src/linux/zsnes.1 debian/zsnes/usr/share/man/man1/zsnes.1
+# #	I want to install docs here because I want to change their names
+# #   NO LONGER AVAILABLE...
+# #	install -D docs/README.LINUX debian/zsnes/usr/share/doc/zsnes/README.linux
+# #	install docs/authors.txt debian/zsnes/usr/share/doc/zsnes/AUTHORS
+# #	install docs/readme.txt debian/zsnes/usr/share/doc/zsnes/README
+# #	install docs/srcinfo.txt debian/zsnes/usr/share/doc/zsnes/SRCINFO
+# #	install docs/todo.txt debian/zsnes/usr/share/doc/zsnes/TODO
+# 	mkdir -p debian/zsnes/usr/share/pixmaps
+# 	cp -f debian/zsnes.xpm debian/zsnes/usr/share/pixmaps/zsnes.xpm
+# 	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source
+# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/debian.smc.gz \
+# 		debian/examples/debian.smc.gz.uu
+# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.set \
+# 		debian/examples/source/deb.set.uu
+# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.map \
+# 		debian/examples/source/deb.map.uu
+# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/col.map \
+# 		debian/examples/source/deb.col.uu
+# 	install -m 644 debian/zsnes.desktop \
+# 		debian/zsnes/usr/share/applications/zsnes.desktop
+# 	cp -f debian/examples/source/debian.asm \
+# 		debian/zsnes/usr/share/doc/zsnes/examples/source/
+# 	cp -f debian/examples/README \
+# 		debian/zsnes/usr/share/doc/zsnes/examples/
+# 	# Install HTML documentation
+# 	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
 
-	install -D src/zsnes debian/zsnes/usr/bin/zsnes
-	install -D src/linux/zsnes.1 debian/zsnes/usr/share/man/man1/zsnes.1
-
-#	I want to install docs here because I want to change their names
-#   NO LONGER AVAILABLE...
-#	install -D docs/README.LINUX debian/zsnes/usr/share/doc/zsnes/README.linux
-#	install docs/authors.txt debian/zsnes/usr/share/doc/zsnes/AUTHORS
-#	install docs/readme.txt debian/zsnes/usr/share/doc/zsnes/README
-#	install docs/srcinfo.txt debian/zsnes/usr/share/doc/zsnes/SRCINFO
-#	install docs/todo.txt debian/zsnes/usr/share/doc/zsnes/TODO
-
-	mkdir -p debian/zsnes/usr/share/pixmaps
-	cp -f debian/zsnes.xpm debian/zsnes/usr/share/pixmaps/zsnes.xpm
-
-	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source
-	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/debian.smc.gz \
-		debian/examples/debian.smc.gz.uu
-	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.set \
-		debian/examples/source/deb.set.uu
-	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.map \
-		debian/examples/source/deb.map.uu
-	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/col.map \
-		debian/examples/source/deb.col.uu
-	install -m 644 debian/zsnes.desktop \
-		debian/zsnes/usr/share/applications/zsnes.desktop
-	cp -f debian/examples/source/debian.asm \
-		debian/zsnes/usr/share/doc/zsnes/examples/source/
-	cp -f debian/examples/README \
-		debian/zsnes/usr/share/doc/zsnes/examples/
-	# Install HTML documentation
-	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
-
-binary-indep:
-# Ye olde no-op.
-
-# Build architecture-dependent files here.
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs
-	dh_installmenu
-	dh_installman
-	dh_installchangelogs
-	dh_link
-	dh_strip
-	dh_compress -Xexamples
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-arch
-.PHONY: build clean binary-arch binary install
+# Use override_dh_* targets to customize this.
+# ---------------------------------------------------
+# Followings are the old debian/rules
+#
+# patch-stamp:
+# 	dpatch apply-all
+# 	touch $@
+# 
+# unpatch:
+# 	dpatch deapply-all
+# 	rm -f patch-stamp
+# 
+# build: patch-stamp build-stamp
+# build-stamp:
+# 	dh_testdir
+# 	cd src && ./configure --enable-opengl --disable-cpucheck --enable-release --disable-debugger --enable-libao force_arch=i486 && $(MAKE)
+# 	touch $@
+# 
+# clean: unpatch
+# 	dh_testdir
+# 	dh_testroot
+# 	rm -f build-stamp
+# 
+# 
+# binary-indep:
+# # Ye olde no-op.
+# 
+# # Build architecture-dependent files here.
+# binary-arch: build install
+# 	dh_testdir
+# 	dh_testroot
+# 	dh_installdocs
+# 	dh_installmenu
+# 	dh_installman
+# 	dh_installchangelogs
+# 	dh_link
+# 	dh_strip
+# 	dh_compress -Xexamples
+# 	dh_fixperms
+# 	dh_installdeb
+# 	dh_shlibdeps
+# 	dh_gencontrol
+# 	dh_md5sums
+# 	dh_builddeb
+# 
+# binary: binary-arch
+# .PHONY: build clean binary-arch binary install

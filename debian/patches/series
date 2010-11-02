@@ -1,0 +1,3 @@
+gcc-fno-rtti.patch
+replace_crc32.patch
+gcc-4.3-ftbfs.patch

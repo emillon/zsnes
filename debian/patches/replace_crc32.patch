@@ -1,12 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## originally: replace_crc32.dpatch by Javier Serrano Polo <jasp00@terra.es>
-##
-## DP: CRC32 is now a keyword in nasm, replace it by RomCRC32.
-
-@DPATCH@
-diff -ur zsnes-1.510.orig/src/init.asm zsnes-1.510/src/init.asm
---- zsnes-1.510.orig/src/init.asm	2007-01-23 19:51:00.000000000 +0100
-+++ zsnes-1.510/src/init.asm	2007-10-23 08:23:56.000000000 +0200
+Author: Javier Serrano Polo <jasp00@terra.es>
+Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
+--- a/src/init.asm
++++ b/src/init.asm
 @@ -892,7 +892,7 @@
  SECTION .bss
  NEWSYM IPSPatched, resb 1
@@ -16,9 +11,8 @@ diff -ur zsnes-1.510.orig/src/init.asm zsnes-1.510/src/init.asm
  NEWSYM SramExists,    resb 1
  NEWSYM NumofBanks,    resd 1
  NEWSYM NumofBytes,    resd 1
-diff -ur zsnes-1.510.orig/src/initc.c zsnes-1.510/src/initc.c
---- zsnes-1.510.orig/src/initc.c	2007-01-20 01:02:24.000000000 +0100
-+++ zsnes-1.510/src/initc.c	2007-10-23 08:35:47.000000000 +0200
+--- a/src/initc.c
++++ b/src/initc.c
 @@ -1649,7 +1649,7 @@
    }
  }
@@ -40,9 +34,8 @@ diff -ur zsnes-1.510.orig/src/initc.c zsnes-1.510/src/initc.c
  
    i = (SplittedROM) ? infoloc + 0x1E + addOnStart: infoloc + 0x1E;
  
-diff -ur zsnes-1.510.orig/src/zmovie.c zsnes-1.510/src/zmovie.c
---- zsnes-1.510.orig/src/zmovie.c	2007-01-20 21:30:27.000000000 +0100
-+++ zsnes-1.510/src/zmovie.c	2007-10-23 08:37:04.000000000 +0200
+--- a/src/zmovie.c
++++ b/src/zmovie.c
 @@ -75,7 +75,7 @@
  typedef unsigned __int64 uint64;
  #endif
