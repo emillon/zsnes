@@ -1,8 +1,18 @@
-Author: Javier Serrano Polo <jasp00@terra.es>
-Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Tue, 2 Nov 2010 17:04:53 +0100
+Subject: [PATCH] replace_crc32
+
+---
+ src/init.asm |    2 +-
+ src/initc.c  |    6 +++---
+ src/zmovie.c |    6 +++---
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/src/init.asm b/src/init.asm
+index d1ef900..e4b6811 100644
 --- a/src/init.asm
 +++ b/src/init.asm
-@@ -892,7 +892,7 @@
+@@ -892,7 +892,7 @@ SECTION .data
  SECTION .bss
  NEWSYM IPSPatched, resb 1
  NEWSYM Checksumvalue, resw 1
@@ -11,9 +21,11 @@ Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
  NEWSYM SramExists,    resb 1
  NEWSYM NumofBanks,    resd 1
  NEWSYM NumofBytes,    resd 1
+diff --git a/src/initc.c b/src/initc.c
+index f414bb5..405f07c 100644
 --- a/src/initc.c
 +++ b/src/initc.c
-@@ -1649,7 +1649,7 @@
+@@ -1649,7 +1649,7 @@ static void SPC7PathSetup(char *PathVar, const char *Default)
    }
  }
  
@@ -22,7 +34,7 @@ Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
  extern char *Msgptr;
  unsigned int SPC7110Entries;
  
-@@ -1798,9 +1798,9 @@
+@@ -1798,9 +1798,9 @@ unsigned int showinfogui()
    // 42 is the answer, and the uCONSRT standard
  
    // calculate CRC32 for the whole ROM, or Add-on ROM only
@@ -34,9 +46,11 @@ Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
  
    i = (SplittedROM) ? infoloc + 0x1E + addOnStart: infoloc + 0x1E;
  
+diff --git a/src/zmovie.c b/src/zmovie.c
+index 4d8cc3f..683b1dc 100644
 --- a/src/zmovie.c
 +++ b/src/zmovie.c
-@@ -75,7 +75,7 @@
+@@ -75,7 +75,7 @@ typedef unsigned long long uint64;
  typedef unsigned __int64 uint64;
  #endif
  
@@ -45,7 +59,7 @@ Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
  extern unsigned int JoyAOrig, JoyBOrig, JoyCOrig, JoyDOrig, JoyEOrig;
  extern unsigned char GUIReset, ReturnFromSPCStall, GUIQuit;
  extern unsigned char CMovieExt, mencoderExists, lameExists;
-@@ -932,7 +932,7 @@
+@@ -932,7 +932,7 @@ static bool zmv_create(char *filename)
      size_t filename_len = strlen(filename);
      strncpy(zmv_vars.header.magic, "ZMV", 3);
      zmv_vars.header.zsnes_version = versionNumber & 0xFFFF;
@@ -54,7 +68,7 @@ Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
      zmv_vars.header.zst_size = cur_zst_size;
      zmv_vars.header.zmv_flag.start_method = (enum zmv_start_methods)MovieStartMethod;
      zmv_vars.header.zmv_flag.video_mode = romispal ? zmv_vm_pal : zmv_vm_ntsc;
-@@ -1252,7 +1252,7 @@
+@@ -1252,7 +1252,7 @@ static bool zmv_open(char *filename)
        Msgptr = "MOVIE STARTED.";
      }
  
@@ -63,3 +77,4 @@ Description: CRC32 is now a keyword in nasm, replace it by RomCRC32.
      {
        static char buffer[29]; //"ROM MISMATCH. NEED: 01234567"
        sprintf(buffer, "ROM MISMATCH. NEED: %08X", zmv_vars.header.rom_crc32);
+-- 
