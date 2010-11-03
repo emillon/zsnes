@@ -1,3 +1,11 @@
+zsnes (1.510-3) UNRELEASED; urgency=low
+
+  * New maintainer (Closes: #573418).
+  * Added ${misc:Depends} to dependencies.
+  * Removed useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040)
+
+ -- Etienne Millon <etienne.millon@gmail.com>  Wed, 03 Nov 2010 10:58:53 +0100
+
 zsnes (1.510-2.2) unstable; urgency=medium
 
   * Non-maintainer upload.
