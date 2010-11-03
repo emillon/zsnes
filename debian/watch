@@ -1,0 +1,4 @@
+version=3
+opts="uversionmangle=s/(\d)(\d\d)/$1.${2}0/" \
+  http://zsnes.com/ \
+  http://prdownloads.sourceforge.net/zsnes/zsnes(.+)src.tar.bz2
