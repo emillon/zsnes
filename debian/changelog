@@ -1,11 +1,13 @@
-zsnes (1.510-3) UNRELEASED; urgency=low
+zsnes (1.510-3~mentors1) unstable; urgency=low
 
   * New maintainer (Closes: #573418).
-  * Added ${misc:Depends} to dependencies.
-  * Removed useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040)
-  * Added watch file.
+  * Add ${misc:Depends} to dependencies.
+  * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040)
+  * Add debian/watch file.
+  * Add debian/source/format.
+  * Add debian/README.source to document dpatch.
 
- -- Etienne Millon <etienne.millon@gmail.com>  Wed, 03 Nov 2010 12:47:42 +0100
+ -- Etienne Millon <etienne.millon@gmail.com>  Thu, 04 Nov 2010 10:22:04 +0100
 
 zsnes (1.510-2.2) unstable; urgency=medium
 
