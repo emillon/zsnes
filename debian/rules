@@ -2,6 +2,10 @@
 # debian/rules for zsnes
 # 2001-2005 Aaron Lehmann <aaronl@vitelus.com>
 # 2006 Joshua Kwan <joshk@triplehelix.org>
+# 2007 Josh Triplett <josh@freedesktop.org>
+# 2010 Michael Leuchtenburg <michael@slashhome.org>
+
+DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 
 patch-stamp:
 	dpatch apply-all
@@ -11,12 +15,20 @@ unpatch:
 	dpatch deapply-all
 	rm -f patch-stamp
 
+
+ifeq ($(DEB_HOST_ARCH_CPU),i386)
+CONFIGURE_LIBAO := --enable-libao
+else
+CONFIGURE_LIBAO := --disable-libao
+LIBS := -L/usr/lib32
+endif
+
 build: patch-stamp build-stamp
 build-stamp:
 	dh_testdir
 
-	cd src && ./configure --enable-opengl --disable-cpucheck --enable-release --disable-debugger --enable-libao force_arch=i486 && $(MAKE)
-
+	cd src && ./configure LIBS="$(LIBS)" CFLAGS=-m32 --enable-opengl --disable-cpucheck --enable-release --disable-debugger $(CONFIGURE_LIBAO) force_arch=i486 && $(MAKE)
+ 
 	touch $@
 
 clean: unpatch
