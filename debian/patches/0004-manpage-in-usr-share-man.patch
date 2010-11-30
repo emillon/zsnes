@@ -1,0 +1,25 @@
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Tue, 30 Nov 2010 13:19:05 +0100
+Subject: [PATCH] manpage-in-usr-share-man
+
+Manpage should do in /usr/share/man, not /usr/man.
+---
+ src/Makefile.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/Makefile.in b/src/Makefile.in
+index 4c49a79..31a8c6e 100644
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -144,8 +144,8 @@ config.status: configure.in
+ install:
+ 	@INSTALL@ -d -m 0755 $(DESTDIR)/@prefix@/bin
+ 	@INSTALL@ -m 0755 @ZSNESEXE@ $(DESTDIR)/@prefix@/bin
+-	@INSTALL@ -d -m 0755 $(DESTDIR)/@prefix@/man/man1
+-	@INSTALL@ -m 0644 linux/zsnes.1 $(DESTDIR)/@prefix@/man/man1
++	@INSTALL@ -d -m 0755 $(DESTDIR)/@prefix@/share/man/man1
++	@INSTALL@ -m 0644 linux/zsnes.1 $(DESTDIR)/@prefix@/share/man/man1
+ uninstall:
+ 	rm -f @prefix@/bin/$(notdir @ZSNESEXE@) @prefix@/man/man1/zsnes.1
+ 
+-- 
