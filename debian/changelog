@@ -5,9 +5,10 @@ zsnes (1.510-3) unstable; urgency=low
   * Add ${misc:Depends} to dependencies.
   * Add debian/watch file.
   * Add debian/source/format.
-  * Add debian/README.source to document dpatch.
+  * Bump Standards-Version to 3.9.1 (no changes)
+  * Switched to '3.0 (quilt)' format
 
- -- Etienne Millon <etienne.millon@gmail.com>  Fri, 19 Nov 2010 17:06:18 +0100
+ -- Etienne Millon <etienne.millon@gmail.com>  Tue, 30 Nov 2010 21:49:22 +0100
 
 zsnes (1.510-2.2) unstable; urgency=medium
 
