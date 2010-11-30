@@ -7,7 +7,8 @@ zsnes (1.510-3) unstable; urgency=low
   * Add debian/source/format.
   * Add debian/README.source to document dpatch.
   * Add support for amd64 (Closes: #402104)
-
+  * Compile with --disable-libao (Closes: #465119)
+  
  -- Etienne Millon <etienne.millon@gmail.com>  Fri, 19 Nov 2010 17:06:18 +0100
 
 zsnes (1.510-2.2) unstable; urgency=medium
