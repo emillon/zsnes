@@ -34,6 +34,7 @@ override_dh_installexamples:
 		debian/zsnes/usr/share/doc/zsnes/examples/
 
 override_dh_installdocs:
+	dh_installdocs
 	# Install HTML documentation
 	install -d debian/zsnes/usr/share/doc/zsnes
 	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
