@@ -18,39 +18,37 @@ override_dh_clean:
 	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
 	dh_clean
 
+override_dh_installman:
+	install -D src/linux/zsnes.1 debian/zsnes/usr/share/man/man1/zsnes.1
+
+override_dh_installexamples:
+	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source
+	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/debian.smc.gz \
+		debian/examples/debian.smc.gz.uu
+	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.set \
+		debian/examples/source/deb.set.uu
+	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.map \
+		debian/examples/source/deb.map.uu
+	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/col.map \
+		debian/examples/source/deb.col.uu
+	cp -f debian/examples/source/debian.asm \
+		debian/zsnes/usr/share/doc/zsnes/examples/source/
+	cp -f debian/examples/README \
+		debian/zsnes/usr/share/doc/zsnes/examples/
+
+override_dh_installdocs:
+	# Install HTML documentation
+	install -d debian/zsnes/usr/share/doc/zsnes
+	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
+
 # dh_override_install:
-# 	dh_testdir
-# 	dh_testroot
 # 	dh_clean -k
 # 	dh_installdirs
 # 	install -D src/zsnes debian/zsnes/usr/bin/zsnes
-# 	install -D src/linux/zsnes.1 debian/zsnes/usr/share/man/man1/zsnes.1
-# #	I want to install docs here because I want to change their names
-# #   NO LONGER AVAILABLE...
-# #	install -D docs/README.LINUX debian/zsnes/usr/share/doc/zsnes/README.linux
-# #	install docs/authors.txt debian/zsnes/usr/share/doc/zsnes/AUTHORS
-# #	install docs/readme.txt debian/zsnes/usr/share/doc/zsnes/README
-# #	install docs/srcinfo.txt debian/zsnes/usr/share/doc/zsnes/SRCINFO
-# #	install docs/todo.txt debian/zsnes/usr/share/doc/zsnes/TODO
 # 	mkdir -p debian/zsnes/usr/share/pixmaps
 # 	cp -f debian/zsnes.xpm debian/zsnes/usr/share/pixmaps/zsnes.xpm
-# 	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source
-# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/debian.smc.gz \
-# 		debian/examples/debian.smc.gz.uu
-# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.set \
-# 		debian/examples/source/deb.set.uu
-# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/deb.map \
-# 		debian/examples/source/deb.map.uu
-# 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/col.map \
-# 		debian/examples/source/deb.col.uu
 # 	install -m 644 debian/zsnes.desktop \
 # 		debian/zsnes/usr/share/applications/zsnes.desktop
-# 	cp -f debian/examples/source/debian.asm \
-# 		debian/zsnes/usr/share/doc/zsnes/examples/source/
-# 	cp -f debian/examples/README \
-# 		debian/zsnes/usr/share/doc/zsnes/examples/
-# 	# Install HTML documentation
-# 	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
 
 # Use override_dh_* targets to customize this.
 # ---------------------------------------------------
