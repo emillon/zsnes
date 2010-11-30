@@ -38,6 +38,9 @@ override_dh_installdocs:
 	install -d debian/zsnes/usr/share/doc/zsnes
 	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
 
+override_dh_compress:
+	dh_compress -Xdeb.set
+
 # dh_override_install:
 # 	dh_clean -k
 # 	dh_installdirs
