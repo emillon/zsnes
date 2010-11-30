@@ -5,8 +5,8 @@
 # 2010 Etienne Millon <etienne.millon@gmail.com>
 #
 # Uncomment this to turn on verbose mode.
-export DH_VERBOSE=1
-export DH_OPTIONS=-v
+#export DH_VERBOSE=1
+#export DH_OPTIONS=-v
 
 %:
 	dh $@ --sourcedirectory=src
@@ -41,60 +41,3 @@ override_dh_installdocs:
 
 override_dh_compress:
 	dh_compress -Xdeb.set
-
-# dh_override_install:
-# 	dh_clean -k
-# 	dh_installdirs
-# 	install -D src/zsnes debian/zsnes/usr/bin/zsnes
-# 	mkdir -p debian/zsnes/usr/share/pixmaps
-# 	cp -f debian/zsnes.xpm debian/zsnes/usr/share/pixmaps/zsnes.xpm
-# 	install -m 644 debian/zsnes.desktop \
-# 		debian/zsnes/usr/share/applications/zsnes.desktop
-
-# Use override_dh_* targets to customize this.
-# ---------------------------------------------------
-# Followings are the old debian/rules
-#
-# patch-stamp:
-# 	dpatch apply-all
-# 	touch $@
-# 
-# unpatch:
-# 	dpatch deapply-all
-# 	rm -f patch-stamp
-# 
-# build: patch-stamp build-stamp
-# build-stamp:
-# 	dh_testdir
-# 	cd src && ./configure --enable-opengl --disable-cpucheck --enable-release --disable-debugger --enable-libao force_arch=i486 && $(MAKE)
-# 	touch $@
-# 
-# clean: unpatch
-# 	dh_testdir
-# 	dh_testroot
-# 	rm -f build-stamp
-# 
-# 
-# binary-indep:
-# # Ye olde no-op.
-# 
-# # Build architecture-dependent files here.
-# binary-arch: build install
-# 	dh_testdir
-# 	dh_testroot
-# 	dh_installdocs
-# 	dh_installmenu
-# 	dh_installman
-# 	dh_installchangelogs
-# 	dh_link
-# 	dh_strip
-# 	dh_compress -Xexamples
-# 	dh_fixperms
-# 	dh_installdeb
-# 	dh_shlibdeps
-# 	dh_gencontrol
-# 	dh_md5sums
-# 	dh_builddeb
-# 
-# binary: binary-arch
-# .PHONY: build clean binary-arch binary install
