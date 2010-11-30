@@ -12,11 +12,18 @@
 	dh $@ --sourcedirectory=src
 
 override_dh_auto_configure:
+	cp /usr/share/misc/config.guess src/
+	cp /usr/share/misc/config.sub src/
 	dh_auto_configure --sourcedirectory=src -- --enable-opengl --disable-cpucheck --enable-release --disable-debugger --enable-libao force_arch=i486
 
 override_dh_clean:
 	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
 	dh_clean
+
+override_dh_auto_clean:
+	rm -f src/config.guess
+	rm -f src/config.sub
+	dh_auto_clean
 
 override_dh_installexamples:
 	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source
