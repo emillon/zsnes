@@ -1,14 +1,21 @@
 zsnes (1.510-3) unstable; urgency=low
 
   * New maintainer (Closes: #573418).
-  * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040)
+  * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040).
   * Add ${misc:Depends} to dependencies.
   * Add debian/watch file.
   * Add debian/source/format.
-  * Bump Standards-Version to 3.9.1 (no changes)
-  * Switched to '3.0 (quilt)' format
+  * Switched to '3.0 (quilt)' format.
+  * Bump Standards-Version to 3.9.1 (no changes).
+  * zsnes.desktop: removed useless Encoding field.
+  * zsnes.doc-base: removed 'Apps/' prefix from Section.
+  * Build know copies config.{guess,sub} from autotools-dev.
+  * Add patches to upstream sources:
+    - Convert the manpage to use minus signs and en-dashes instead of hyphens.
+    - Correct a spelling error.
+    - Remove an extra license file in documentation.
 
- -- Etienne Millon <etienne.millon@gmail.com>  Tue, 30 Nov 2010 21:49:22 +0100
+ -- Etienne Millon <etienne.millon@gmail.com>  Wed, 01 Dec 2010 16:55:26 +0100
 
 zsnes (1.510-2.2) unstable; urgency=medium
 
