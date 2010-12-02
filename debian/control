@@ -5,6 +5,8 @@ Homepage: http://www.zsnes.com
 Maintainer: Etienne Millon <etienne.millon@gmail.com>
 Build-Depends: debhelper (>= 8), nasm, libsdl1.2-dev (>= 1.2.2-3.1), zlib1g-dev, sharutils, libpng12-dev | libpng-dev, libao-dev, autotools-dev
 Standards-Version: 3.9.1
+Vcs-Git: git://github.com/emillon/zsnes.git
+Vcs-Browser: https://github.com/emillon/zsnes
 
 Package: zsnes
 Architecture: i386
