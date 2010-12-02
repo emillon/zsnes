@@ -1,0 +1,22 @@
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Tue, 30 Nov 2010 17:29:56 +0100
+Subject: [PATCH] spelling-error-separately
+
+---
+ src/md.psr |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/md.psr b/src/md.psr
+index 0634b83..2f0cb57 100644
+--- a/src/md.psr
++++ b/src/md.psr
+@@ -20,7 +20,7 @@
+ %define PSR_HASH
+ 
+ md_raw_file times 50 db "rawvideo.bin" @ Only for Raw Videos
+-md_pcm_audio times 50 db "audio.wav" @ AVI dumping always dumps audio seperatly
++md_pcm_audio times 50 db "audio.wav" @ AVI dumping always dumps audio separately
+ md_compressed_audio times 50 db "audio.mp3" @ For when selecting compressed
+ md_logo times 50 db "" @If you want a logo, specify a logo file. It should be a series of frames 256x224x24.
+ @
+-- 

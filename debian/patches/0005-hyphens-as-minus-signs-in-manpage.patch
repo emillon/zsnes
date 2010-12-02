@@ -1,0 +1,235 @@
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Tue, 30 Nov 2010 17:23:40 +0100
+Subject: [PATCH] hyphens-as-minus-signs-in-manpage
+
+Plain '-' characters in the manpage are rendered as hyphens, not minus signs
+(like command-line switches). This patch converts those hyphens to minus signs,
+en-dashes (for ranges) and proper hyphens.
+---
+ src/linux/zsnes.1 |  106 ++++++++++++++++++++++++++--------------------------
+ 1 files changed, 53 insertions(+), 53 deletions(-)
+
+diff --git a/src/linux/zsnes.1 b/src/linux/zsnes.1
+index ad936d4..5ecef60 100644
+--- a/src/linux/zsnes.1
++++ b/src/linux/zsnes.1
+@@ -1,10 +1,10 @@
+ .TH "ZSNES v1.51" 1
+ 
+ .SH NAME
+-ZSNES - Super Nintendo console emulator
++ZSNES \- Super Nintendo console emulator
+ .SH SYNOPSIS
+ .B ZSNES
+-[-?] [-1 #] [-2 #] [-dd] [-dh] [-f #] [-g #] [-h | -l] [-j] [-js #] [-k #] [-m] [-mc] [-md] [-ml #] [-n #] [-o] [-p #] [-r #] [-s] [-sa] [-t | -u] [-v #] [-y] [-z] [-zm #] [-zs #] [romname]
++[\-?] [\-1 #] [\-2 #] [\-dd] [\-dh] [\-f #] [\-g #] [\-h | \-l] [\-j] [\-js #] [\-k #] [\-m] [\-mc] [\-md] [\-ml #] [\-n #] [\-o] [\-p #] [\-r #] [\-s] [\-sa] [\-t | \-u] [\-v #] [\-y] [\-z] [\-zm #] [\-zs #] [romname]
+ 
+ .SH DESCRIPTION
+ .B ZSNES
+@@ -15,55 +15,55 @@ Visit http://www.zsnes.com/ for the latest updates.
+ .SH OPTIONS
+ Note: Many of these options can also be set in the GUI.
+ .TP
+-.B -?
+-Display command-line help
++.B \-?
++Display command\[hy]line help
+ .TP
+-.B -1 # / -2 #
++.B \-1 # / \-2 #
+ Set controls for Player 1/2
+ .nf
+ \fI0\fP = None       \fI1\fP = Keyboard/Gamepad
+ .fi
+ .TP
+-.B -dd
++.B \-dd
+ Disable sound DSP emulation
+ .TP
+-.B -dh
++.B \-dh
+ Disable game hacks
+ .TP
+-.B -f #
+-Enable frame skipping, where \fB#\fP is a numerical value from \fI0-9\fP
++.B \-f #
++Enable frame skipping, where \fB#\fP is a numerical value from \fI0\[en]9\fP
+ .TP
+-.B -g #
+-Specify gamma correction value, where \fB#\fP is a numerical value from \fI0-15\fP
++.B \-g #
++Specify gamma correction value, where \fB#\fP is a numerical value from \fI0\[en]15\fP
+ .TP
+-.B -h
+-Force HiROM. Cannot be used with \fB-l\fP
++.B \-h
++Force HiROM. Cannot be used with \fB\-l\fP
+ .TP
+-.B -j
++.B \-j
+ Disable Mouse (Automatically turns off right mouse click)
+ .TP
+-.B -js #
+-Adjust joystick sensitivity, where \fB#\fP is a numerical value from \fI0-32767\fP
++.B \-js #
++Adjust joystick sensitivity, where \fB#\fP is a numerical value from \fI0\[en]32767\fP
+ .TP
+-.B -k #
+-Set volume level, where \fB#\fP is a numerical value from \fI1-100\fP
++.B \-k #
++Set volume level, where \fB#\fP is a numerical value from \fI1\[en]100\fP
+ .TP
+-.B -l
+-Force LoROM. Cannot be used with \fB-h\fP
++.B \-l
++Force LoROM. Cannot be used with \fB\-h\fP
+ .TP
+-.B -m
++.B \-m
+ Disable GUI (Must specify ROM filename)
+ .TP
+-.B -mc
+-Exit ZSNES when closing a movie (use with \fB-zm\fP)
++.B \-mc
++Exit ZSNES when closing a movie (use with \fB\-zm\fP)
+ .TP
+-.B -md
+-Dump raw video (use with \fB-zm\fP)
++.B \-md
++Dump raw video (use with \fB\-zm\fP)
+ .TP
+-.B -ml
+-Define movie dump length in amount of frames (use with \fB-md\fP)
++.B \-ml
++Define movie dump length in amount of frames (use with \fB\-md\fP)
+ .TP
+-.B -n #
++.B \-n #
+ Enable scanlines (when available), where
+ .B #
+ is one of:
+@@ -72,15 +72,15 @@ is one of:
+ \fI3\fP = 50%
+ .fi
+ .TP
+-.B -o
++.B \-o
+ Disable MMX support
+ .TP
+-.B -p #
++.B \-p #
+ Change the clock speed of the main CPU, where
+ .B #
+-is a numerical value from \fI50-150\fP. 100 is the normal speed. Changing this value may have adverse side effects.
++is a numerical value from \fI50\[en]150\fP. 100 is the normal speed. Changing this value may have adverse side effects.
+ .TP
+-.B -r #
++.B \-r #
+ Set audio sampling rate, where
+ .B #
+ is one of:
+@@ -90,20 +90,20 @@ is one of:
+ \fI6\fP = 48 KHz
+ .fi
+ .TP
+-.B -s
++.B \-s
+ Enable SPC700/DSP emulation (Sound)
+ .TP
+-.B -sa
++.B \-sa
+ Show files with all extensions (*.*) in GUI. Default is to only show files with one of the extensions listed in
+ .B romname
+ .TP
+-.B -t
+-Force NTSC (60 Hz) timing. Cannot be used with \fB-u\fP
++.B \-t
++Force NTSC (60 Hz) timing. Cannot be used with \fB\-u\fP
+ .TP
+-.B -u
+-Force PAL (50 Hz) timing. Cannot be used with \fB-t\fP
++.B \-u
++Force PAL (50 Hz) timing. Cannot be used with \fB\-t\fP
+ .TP
+-.B -v #
++.B \-v #
+ Select video mode, where
+ .B #
+ is one of:
+@@ -118,20 +118,20 @@ is one of:
+ \fI21\fP = VARIABLE ODS W  \fI22\fP = CUSTOM OD F
+ .fi
+ .TP
+-.B -y
++.B \-y
+ Enable Interpolation
+ .TP
+-.B -z
++.B \-z
+ Disable stereo sound. Stereo sound is enabled by default
+ .TP
+-.B -zm #
+-Auto load specified movie on startup, where \fB#\fP is a numerical value from \fI0-9\fP
++.B \-zm #
++Auto load specified movie on startup, where \fB#\fP is a numerical value from \fI0\[en]9\fP
+ .TP
+-.B -zs #
+-Auto load specified save state on startup, where \fB#\fP is a numerical value from \fI0-99\fP
++.B \-zs #
++Auto load specified save state on startup, where \fB#\fP is a numerical value from \fI0\[en]99\fP
+ .TP
+ .B romname
+-Name of ROM to auto-load
++Name of ROM to auto\[hy]load
+ .B romname
+ is of the format \fBfilename.ext\fP, where
+ .B .ext
+@@ -148,7 +148,7 @@ The main program.
+ This is the directory where ZSNES configuration files are stored. By default, it is also the directory where save states, screenshots, SPC dumps and ZMV movie files are stored, but you can change this behaviour by editing zsnesl.cfg. This directory is created by ZSNES.
+ .TP
+ ~/.zsnes/zsnesl.cfg
+-This file is where configuration settings for ZSNES are stored. It is in a human-readable format and can be edited by hand. It is created by ZSNES.
++This file is where configuration settings for ZSNES are stored. It is in a human\[hy]readable format and can be edited by hand. It is created by ZSNES.
+ .TP
+ ~/.zsnes/zmovie.cfg
+ This file is where settings specific to AVI dumping are saved. It is created by ZSNES.
+@@ -162,7 +162,7 @@ This file is where input configuration settings for ZSNES are stored.
+ .B If for some reason you update your version of ZSNES and it keeps crashing before you can do anything, you should try deleting the above .cfg files and let ZSNES create new ones.
+ 
+ .SH "SPECIAL CHIP GAMES"
+-Many games on the Super Nintendo used custom CPUs in addition to the main SNES CPU. Some of these CPUs have not been fully reverse-engineered, and games that use them may either not work or may experience strange bugs.
++Many games on the Super Nintendo used custom CPUs in addition to the main SNES CPU. Some of these CPUs have not been fully reverse\[hy]engineered, and games that use them may either not work or may experience strange bugs.
+ 
+ You can find more information about these special CPUs at:
+ 
+@@ -176,7 +176,7 @@ Some games based on the SPC7110 chip, such as Far East of Eden Zero, can use spe
+ 
+ The proper directory name for a given graphics pack can be found in the readme file included with that pack.
+ 
+-NOTE: As of version 1.40, games which use the S-DD1 chip (Star Ocean and Street Fighter Alpha 2) do not require graphics packs.
++NOTE: As of version 1.40, games which use the S\[hy]DD1 chip (Star Ocean and Street Fighter Alpha 2) do not require graphics packs.
+ 
+ .SH "REPORTING BUGS"
+ You can report bugs using the bug tracker at the ZSNES BountySource page, located at
+@@ -201,15 +201,15 @@ ZSNES Repository (SubVersioN):
+ https://svn.bountysource.com/zsnes/trunk/
+ .TP
+ ZSNES Documentation Online:
+-http://zsnes-docs.sf.net/
++http://zsnes\-docs.sf.net/
+ .TP
+ ZSNES IRC:
+ #zsnes on irc.freenode.net
+ .TP
+ ZSNES Docs IRC:
+-#zsnes-docs on irc.freenode.net
++#zsnes\-docs on irc.freenode.net
+ 
+ .SH "COPYRIGHT NOTICE"
+-Copyright \(co 1997-2007 ZSNES Team
++Copyright \(co 1997\[en]2007 ZSNES Team
+ 
+-Permission is granted to copy and distribute this manual under the terms of the GNU Free Documentation License.
+\ No newline at end of file
++Permission is granted to copy and distribute this manual under the terms of the GNU Free Documentation License.
+-- 

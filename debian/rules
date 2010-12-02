@@ -4,17 +4,16 @@
 # 2006 Joshua Kwan <joshk@triplehelix.org>
 # 2007 Josh Triplett <josh@freedesktop.org>
 # 2010 Michael Leuchtenburg <michael@slashhome.org>
+# 2010 Etienne Millon <etienne.millon@gmail.com>
+#
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+#export DH_OPTIONS=-v
 
 DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 
-patch-stamp:
-	dpatch apply-all
-	touch $@
-
-unpatch:
-	dpatch deapply-all
-	rm -f patch-stamp
-
+%:
+	dh $@ --sourcedirectory=src
 
 ifeq ($(DEB_HOST_ARCH_CPU),i386)
 CONFIGURE_LIBAO := --enable-libao
@@ -23,45 +22,24 @@ CONFIGURE_LIBAO := --disable-libao
 LIBS := -L/usr/lib32
 endif
 
-build: patch-stamp build-stamp
-build-stamp:
-	dh_testdir
+override_dh_auto_configure:
+	cp /usr/share/misc/config.guess src/
+	cp /usr/share/misc/config.sub src/
+	dh_auto_configure --sourcedirectory=src -- \
+		LIBS="$(LIBS)" CFLAGS=-m32 --enable-opengl \
+		--disable-cpucheck --enable-release --disable-debugger \
+		$(CONFIGURE_LIBAO) force_arch=i486
 
-	cd src && ./configure LIBS="$(LIBS)" CFLAGS=-m32 --enable-opengl --disable-cpucheck --enable-release --disable-debugger $(CONFIGURE_LIBAO) force_arch=i486 && $(MAKE)
- 
-	touch $@
-
-clean: unpatch
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
-
-# 'make distclean' appears to be broken
-	# [ ! -f src/Makefile ] || cd src && $(MAKE) distclean
+override_dh_clean:
 	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
-
 	dh_clean
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
+override_dh_auto_clean:
+	rm -f src/config.guess
+	rm -f src/config.sub
+	dh_auto_clean
 
-	install -D src/zsnes debian/zsnes/usr/bin/zsnes
-	install -D src/linux/zsnes.1 debian/zsnes/usr/share/man/man1/zsnes.1
-
-#	I want to install docs here because I want to change their names
-#   NO LONGER AVAILABLE...
-#	install -D docs/README.LINUX debian/zsnes/usr/share/doc/zsnes/README.linux
-#	install docs/authors.txt debian/zsnes/usr/share/doc/zsnes/AUTHORS
-#	install docs/readme.txt debian/zsnes/usr/share/doc/zsnes/README
-#	install docs/srcinfo.txt debian/zsnes/usr/share/doc/zsnes/SRCINFO
-#	install docs/todo.txt debian/zsnes/usr/share/doc/zsnes/TODO
-
-	mkdir -p debian/zsnes/usr/share/pixmaps
-	cp -f debian/zsnes.xpm debian/zsnes/usr/share/pixmaps/zsnes.xpm
-
+override_dh_installexamples:
 	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source
 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/debian.smc.gz \
 		debian/examples/debian.smc.gz.uu
@@ -71,35 +49,16 @@ install: build
 		debian/examples/source/deb.map.uu
 	uudecode -o debian/zsnes/usr/share/doc/zsnes/examples/source/col.map \
 		debian/examples/source/deb.col.uu
-	install -m 644 debian/zsnes.desktop \
-		debian/zsnes/usr/share/applications/zsnes.desktop
 	cp -f debian/examples/source/debian.asm \
 		debian/zsnes/usr/share/doc/zsnes/examples/source/
 	cp -f debian/examples/README \
 		debian/zsnes/usr/share/doc/zsnes/examples/
+
+override_dh_installdocs:
+	dh_installdocs
 	# Install HTML documentation
+	install -d debian/zsnes/usr/share/doc/zsnes
 	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
 
-binary-indep:
-# Ye olde no-op.
-
-# Build architecture-dependent files here.
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs
-	dh_installmenu
-	dh_installman
-	dh_installchangelogs
-	dh_link
-	dh_strip
-	dh_compress -Xexamples
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-arch
-.PHONY: build clean binary-arch binary install
+override_dh_compress:
+	dh_compress -Xdeb.set

@@ -4,7 +4,7 @@ Author: Various
 Abstract: This set of documents provides help for using ZSNES. It contains
  help for everything from changing the controls to playing games over the
  Internet.
-Section: Apps/Emulators
+Section: Emulators
 
 Format: html
 Index: /usr/share/doc/zsnes/html/index.htm
