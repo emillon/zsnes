@@ -13,7 +13,7 @@
 DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 
 %:
-	dh $@ --sourcedirectory=src
+	dh $@ --sourcedirectory=src --with autotools_dev
 
 ifeq ($(DEB_HOST_ARCH_CPU),i386)
 CONFIGURE_LIBAO := --enable-libao
@@ -23,10 +23,6 @@ LIBS := -L/usr/lib32
 endif
 
 override_dh_auto_configure:
-	mv src/config.guess src/config.guess.bak
-	mv src/config.sub src/config.sub.bak
-	cp /usr/share/misc/config.guess src/
-	cp /usr/share/misc/config.sub src/
 	dh_auto_configure --sourcedirectory=src -- \
 		LIBS="$(LIBS)" CFLAGS=-m32 --enable-opengl \
 		--disable-cpucheck --enable-release --disable-debugger \
