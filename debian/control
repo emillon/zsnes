@@ -2,8 +2,8 @@ Source: zsnes
 Section: otherosfs
 Priority: optional
 Homepage: http://www.zsnes.com
-Maintainer: Etienne Millon <etienne.millon@gmail.com>
-Uploaders: Eshat Cakar <info@eshat.de>
+Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
+Uploaders: Etienne Millon <etienne.millon@gmail.com>, Eshat Cakar <info@eshat.de>
 Build-Depends:
  debhelper (>= 8),
  nasm,

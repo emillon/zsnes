@@ -1,10 +1,12 @@
 zsnes (1.510-3) unstable; urgency=low
 
   * New maintainer (Closes: #573418).
+    - This package is now maintained by the Debian Games Team.
+    - Add myself and Eshat Cakar to Uploaders.
   * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040).
+  * Add support for amd64 (Closes: #402104)
   * Add ${misc:Depends} to dependencies.
   * Add debian/watch file.
-  * Add debian/source/format.
   * Switched to '3.0 (quilt)' format.
   * Bump Standards-Version to 3.9.1 (no changes).
   * zsnes.desktop: removed useless Encoding field.
@@ -14,7 +16,6 @@ zsnes (1.510-3) unstable; urgency=low
     - Convert the manpage to use minus signs and en-dashes instead of hyphens.
     - Correct a spelling error.
     - Remove an extra license file in documentation.
-  * Add support for amd64 (Closes: #402104)
 
  -- Etienne Millon <etienne.millon@gmail.com>  Wed, 01 Dec 2010 16:55:26 +0100
 
