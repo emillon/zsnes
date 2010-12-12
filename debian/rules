@@ -29,8 +29,6 @@ override_dh_auto_configure:
 		$(CONFIGURE_LIBAO) force_arch=i486
 
 override_dh_clean:
-	[ -e src/config.guess.bak ] && mv -f src/config.guess.bak src/config.guess ; true
-	[ -e src/config.sub.bak ] && mv -f src/config.sub.bak src/config.sub ; true
 	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
 	dh_clean
 
