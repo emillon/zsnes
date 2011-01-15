@@ -5,6 +5,8 @@ zsnes (1.510-3) unstable; urgency=low
     - Add myself and Eshat Cakar to Uploaders.
   * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040).
   * Add support for amd64 (Closes: #402104)
+  * debian/control: clarifiy description thanks to Ubuntu patch
+    (Closes: #487118)
   * Add ${misc:Depends} to dependencies.
   * Add debian/watch file.
   * Switched to '3.0 (quilt)' format.
