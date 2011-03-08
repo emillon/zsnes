@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 30 Nov 2010 17:23:40 +0100
-Subject: [PATCH] hyphens-as-minus-signs-in-manpage
+Subject: hyphens-as-minus-signs-in-manpage
 
 Plain '-' characters in the manpage are rendered as hyphens, not minus signs
 (like command-line switches). This patch converts those hyphens to minus signs,

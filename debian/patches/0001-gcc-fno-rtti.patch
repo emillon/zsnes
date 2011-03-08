@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
-Subject: [PATCH] gcc-fno-rtti
+Subject: gcc-fno-rtti
 
 ---
  src/configure |    2 +-

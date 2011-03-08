@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 30 Nov 2010 19:02:39 +0100
-Subject: [PATCH] removed-license-in-html-doc
+Subject: removed-license-in-html-doc
 
 The license in HTML format is redundant with respect to the copyright
 information available at /usr/share/doc/zsnes/copyright. This patch deletes
