@@ -2,7 +2,7 @@ zsnes (1.510-3) unstable; urgency=low
 
   * New maintainer (Closes: #573418).
     - This package is now maintained by the Debian Games Team.
-    - Add myself and Eshat Cakar to Uploaders.
+    - Add Eshat Cakar and myself to Uploaders.
   * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040).
   * Add support for amd64 (Closes: #402104)
   * debian/control:
