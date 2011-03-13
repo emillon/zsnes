@@ -20,8 +20,9 @@ zsnes (1.510-3) unstable; urgency=low
     - Convert the manpage to use minus signs and en-dashes instead of hyphens.
     - Correct a spelling error.
     - Remove an extra license file in documentation.
+  * debian/rules: add -lpthread to LDFLAGS to fix FTBFS with new binutils
 
- -- Etienne Millon <etienne.millon@gmail.com>  Mon, 07 Mar 2011 17:35:54 +0100
+ -- Etienne Millon <etienne.millon@gmail.com>  Sun, 13 Mar 2011 21:36:04 +0100
 
 zsnes (1.510-2.2) unstable; urgency=medium
 
