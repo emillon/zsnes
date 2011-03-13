@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 30 Nov 2010 13:19:05 +0100
-Subject: [PATCH] manpage-in-usr-share-man
+Subject: manpage-in-usr-share-man
 
 Manpage should do in /usr/share/man, not /usr/man.
 ---

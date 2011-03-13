@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
-Subject: [PATCH] replace_crc32
+Subject: replace_crc32
 
 ---
  src/init.asm |    2 +-

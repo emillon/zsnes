@@ -2,28 +2,38 @@
 # debian/rules for zsnes
 # 2001-2005 Aaron Lehmann <aaronl@vitelus.com>
 # 2006 Joshua Kwan <joshk@triplehelix.org>
+# 2007 Josh Triplett <josh@freedesktop.org>
+# 2010 Michael Leuchtenburg <michael@slashhome.org>
 # 2010 Etienne Millon <etienne.millon@gmail.com>
 #
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 #export DH_OPTIONS=-v
 
+DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
+
 %:
-	dh $@ --sourcedirectory=src
+	dh $@ --sourcedirectory=src --with autotools_dev
+
+ifeq ($(DEB_HOST_ARCH_CPU),i386)
+CONFIGURE_LIBAO := --enable-libao
+else
+CONFIGURE_LIBAO := --disable-libao
+LIBS := -L/usr/lib32
+endif
 
 override_dh_auto_configure:
-	cp /usr/share/misc/config.guess src/
-	cp /usr/share/misc/config.sub src/
-	dh_auto_configure --sourcedirectory=src -- --enable-opengl --disable-cpucheck --enable-release --enable-libao force_arch=i486
+	dh_auto_configure --sourcedirectory=src -- \
+		LIBS="$(LIBS)" CFLAGS=-m32 LDFLAGS=-lpthread --enable-opengl \
+		--disable-cpucheck --enable-release \
+		$(CONFIGURE_LIBAO) force_arch=i486
 
 override_dh_clean:
 	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
 	dh_clean
 
-override_dh_auto_clean:
-	rm -f src/config.guess
-	rm -f src/config.sub
-	dh_auto_clean
+override_dh_installchangelogs:
+	dh_installchangelogs docs/readme.txt/history.txt
 
 override_dh_installexamples:
 	mkdir -p debian/zsnes/usr/share/doc/zsnes/examples/source

@@ -6,4 +6,12 @@ docs/stdards.txt
 docs/support.txt
 docs/thanks.txt
 docs/todo.txt
-docs/readme.txt/*.txt
+docs/readme.txt/about.txt
+docs/readme.txt/advanced.txt
+docs/readme.txt/faq.txt
+docs/readme.txt/games.txt
+docs/readme.txt/gui.txt
+docs/readme.txt/index.txt
+docs/readme.txt/netplay.txt
+docs/readme.txt/readme.txt
+docs/readme.txt/support.txt

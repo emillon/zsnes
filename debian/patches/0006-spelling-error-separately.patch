@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 30 Nov 2010 17:29:56 +0100
-Subject: [PATCH] spelling-error-separately
+Subject: spelling-error-separately
 
 ---
  src/md.psr |    2 +-

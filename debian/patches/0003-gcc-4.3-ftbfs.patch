@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
-Subject: [PATCH] gcc-4.3-ftbfs
+Subject: gcc-4.3-ftbfs
 
 ---
  src/parsegen.cpp       |    3 ++-
