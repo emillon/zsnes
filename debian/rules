@@ -24,7 +24,7 @@ endif
 
 override_dh_auto_configure:
 	dh_auto_configure --sourcedirectory=src -- \
-		LIBS="$(LIBS)" CFLAGS=-m32 --enable-opengl \
+		LIBS="$(LIBS)" CFLAGS=-m32 LDFLAGS=-lpthread --enable-opengl \
 		--disable-cpucheck --enable-release --disable-debugger \
 		$(CONFIGURE_LIBAO) force_arch=i486
 
