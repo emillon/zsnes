@@ -1,3 +1,13 @@
+zsnes (1.510+bz2-1) UNRELEASED; urgency=low
+
+  * debian/rules: add -lpthread to LDFLAGS to fix FTBFS with new binutils
+    (Closes: #620656)
+  * debian/control:
+    - Remove an incorrect statement about multiplayer in the description
+    (Closes: #616445)
+
+ -- Etienne Millon <etienne.millon@gmail.com>  Sun, 03 Apr 2011 13:05:56 +0200
+
 zsnes (1.510-3) unstable; urgency=low
 
   * New maintainer (Closes: #573418).
@@ -5,10 +15,8 @@ zsnes (1.510-3) unstable; urgency=low
     - Add Eshat Cakar and myself to Uploaders.
   * Remove useless build-deps on xlibmesa-gl-dev and xutils (Closes: #579040).
   * Add support for amd64 (Closes: #402104)
-  * debian/control:
-    - Clarify description thanks to Ubuntu patch (Closes: #487118).
-    - Remove an incorrect statement about multiplayer in the description.
-    (Closes: #616445)
+  * debian/control: clarifiy description thanks to Ubuntu patch
+    (Closes: #487118)
   * Add ${misc:Depends} to dependencies.
   * Add debian/watch file.
   * Switched to '3.0 (quilt)' format.
@@ -20,9 +28,8 @@ zsnes (1.510-3) unstable; urgency=low
     - Convert the manpage to use minus signs and en-dashes instead of hyphens.
     - Correct a spelling error.
     - Remove an extra license file in documentation.
-  * debian/rules: add -lpthread to LDFLAGS to fix FTBFS with new binutils
 
- -- Etienne Millon <etienne.millon@gmail.com>  Sun, 13 Mar 2011 21:36:04 +0100
+ -- Etienne Millon <etienne.millon@gmail.com>  Wed, 01 Dec 2010 16:55:26 +0100
 
 zsnes (1.510-2.2) unstable; urgency=medium
 
