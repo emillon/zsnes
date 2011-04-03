@@ -1,12 +1,13 @@
 zsnes (1.510+bz2-1) UNRELEASED; urgency=low
 
+  * Use upstream tarball (in bzip2 format) instead of a custom gzip one.
   * debian/rules: add -lpthread to LDFLAGS to fix FTBFS with new binutils
     (Closes: #620656)
   * debian/control:
     - Remove an incorrect statement about multiplayer in the description
     (Closes: #616445)
 
- -- Etienne Millon <etienne.millon@gmail.com>  Sun, 03 Apr 2011 13:05:56 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Sun, 03 Apr 2011 13:17:46 +0200
 
 zsnes (1.510-3) unstable; urgency=low
 
