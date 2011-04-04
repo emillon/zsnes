@@ -2,6 +2,7 @@ From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 30 Nov 2010 17:29:56 +0100
 Subject: spelling-error-separately
 
+This patch fixes a spelling error in src/md.psr.
 ---
  src/md.psr |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)

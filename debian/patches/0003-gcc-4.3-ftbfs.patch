@@ -2,6 +2,11 @@ From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
 Subject: gcc-4.3-ftbfs
 
+Miscellaneous fixes to build with gcc 4.3:
+
+  - missing headers
+  - argc should have type int, not size_t
+
 ---
  src/parsegen.cpp       |    3 ++-
  src/tools/depbuild.cpp |    3 ++-

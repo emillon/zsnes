@@ -2,6 +2,7 @@ From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
 Subject: gcc-fno-rtti
 
+This patch removes -fno-rtti from CXXFLAGS.
 ---
  src/configure |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)

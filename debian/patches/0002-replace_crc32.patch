@@ -2,6 +2,8 @@ From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
 Subject: replace_crc32
 
+This patch converts the CRC32 global variable to RomCRC32, to avoid conflicts
+with the CRC32 opcode.
 ---
  src/initc.c  |    6 +++---
  src/zmovie.c |    6 +++---

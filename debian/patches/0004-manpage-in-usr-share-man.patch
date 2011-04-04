@@ -2,7 +2,7 @@ From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 30 Nov 2010 13:19:05 +0100
 Subject: manpage-in-usr-share-man
 
-Manpage should do in /usr/share/man, not /usr/man.
+Manpage should go in /usr/share/man, not /usr/man.
 ---
  src/Makefile.in |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
