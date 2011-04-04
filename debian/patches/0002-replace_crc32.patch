@@ -3,37 +3,23 @@ Date: Tue, 2 Nov 2010 17:04:53 +0100
 Subject: replace_crc32
 
 ---
- src/init.asm |    2 +-
  src/initc.c  |    6 +++---
  src/zmovie.c |    6 +++---
- 3 files changed, 7 insertions(+), 7 deletions(-)
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/src/init.asm b/src/init.asm
-index d1ef900..e4b6811 100644
---- a/src/init.asm
-+++ b/src/init.asm
-@@ -892,7 +892,7 @@ SECTION .data
- SECTION .bss
- NEWSYM IPSPatched, resb 1
- NEWSYM Checksumvalue, resw 1
--NEWSYM CRC32, resd 1
-+NEWSYM RomCRC32, resd 1
- NEWSYM SramExists,    resb 1
- NEWSYM NumofBanks,    resd 1
- NEWSYM NumofBytes,    resd 1
 diff --git a/src/initc.c b/src/initc.c
-index f414bb5..405f07c 100644
+index 40348ec..40fba94 100644
 --- a/src/initc.c
 +++ b/src/initc.c
-@@ -1649,7 +1649,7 @@ static void SPC7PathSetup(char *PathVar, const char *Default)
-   }
- }
+@@ -1651,7 +1651,7 @@ static void SPC7PathSetup(char *PathVar, const char *Default)
  
--extern unsigned int MsgCount, MessageOn, CRC32;
-+extern unsigned int MsgCount, MessageOn, RomCRC32;
+ extern unsigned int MsgCount, MessageOn;
  extern char *Msgptr;
- unsigned int SPC7110Entries;
+-unsigned int SPC7110Entries, CRC32;
++unsigned int SPC7110Entries, RomCRC32;
  
+ void SPC7PackIndexLoad()
+ {
 @@ -1798,9 +1798,9 @@ unsigned int showinfogui()
    // 42 is the answer, and the uCONSRT standard
  
