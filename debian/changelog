@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-1) UNRELEASED; urgency=low
+zsnes (1.510+bz2-1) unstable; urgency=low
 
   * Use upstream tarball (in bzip2 format) instead of a custom gzip one.
   * debian/rules: add -lpthread to LDFLAGS to fix FTBFS with new binutils
@@ -10,7 +10,7 @@ zsnes (1.510+bz2-1) UNRELEASED; urgency=low
   * Prevent installation of upstream-provided license.htm instead of deleting
     it.
 
- -- Etienne Millon <etienne.millon@gmail.com>  Mon, 04 Apr 2011 11:48:52 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Mon, 04 Apr 2011 12:07:05 +0200
 
 zsnes (1.510-3) unstable; urgency=low
 
