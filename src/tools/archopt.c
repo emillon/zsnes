@@ -1,8 +1,30 @@
+/*
+Copyright (C) 2005-2007 Nach, grinvader ( http://www.zsnes.com )
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+version 2 as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
+#ifdef _M_X64
+#define __x86_64__
+#endif
+
+#ifdef __GNUC__
 #ifdef __x86_64__
 #define cpuid(in, a, b, c, d) asm volatile("cpuid": "=a" (a), "=b" (b), "=c" (c), "=d" (d) : "a" (in));
 #else
@@ -12,6 +34,22 @@
   cpuid;\
   movl %%ebx,%%edi;\
   popl %%ebx": "=a" (a), "=D" (b), "=c" (c), "=d" (d) : "a" (in));
+#endif
+#else
+char cpubuf[256];
+int z_in, z_a, z_b, z_c, z_d;
+void cpuid_run()
+{
+  _asm {
+    mov eax,z_in
+    cpuid
+    mov z_a,eax
+    mov z_b,ebx
+    mov z_c,ecx
+    mov z_d,edx
+  };
+}
+#define cpuid(in, a, b, c, d) z_in = in; cpuid_run(); a = z_a; b = z_b; c = z_c; d = z_d;
 #endif
 
 char *x86_flags[] =
@@ -62,6 +100,7 @@ int have_cpuid()
 {
   int have = 0x200000;
   #ifndef __x86_64__
+  #ifdef __GNUC__
   asm volatile
   (
   "  pushfl;"
@@ -76,6 +115,23 @@ int have_cpuid()
     : "=a" (have)
     : "c" (have)
   );
+  #else
+  z_c = have;
+  _asm {
+    mov ecx,z_c
+    pushfd
+    pop eax
+    mov edx,eax
+    xor eax,ecx
+    push eax
+    popfd
+    pushfd
+    pop eax
+    xor eax,edx
+    mov z_a,eax
+  };
+  have = z_a;
+  #endif
   #endif
   return(have);
 }
@@ -196,166 +252,211 @@ int main(int argc, const char *const *const argv)
   cpu = "native";
 #endif
 #endif
-
-  if (!cpu && *cpu_family && *vendor_id)
+  if (!cpu)
   {
-    if (!strcmp(vendor_id, "AuthenticAMD") || strstr(model_name, "AMD"))
+    if (!cpu && *cpu_family && *vendor_id)
     {
-      if (strstr(flags, " mmx "))
+      #ifdef __GNUC__
+      if (!strcmp(vendor_id, "AuthenticAMD") || strstr(model_name, "AMD"))
+      {
+        if (strstr(flags, " mmx "))
+        {
+          #if __GNUC__ > 2
+          if (strstr(flags, " 3dnow "))
+          {
+            if (strstr(flags, " 3dnowext ") && (atoi(cpu_family) > 5))
+            {
+              #if __GNUC__ > 3 || __GNUC_MINOR__ > 0
+              if (strstr(flags, " sse "))
+              {
+                #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
+                if (strstr(flags, " sse2 ") && strstr(flags, " lm ")) //Need two checks to protect Semprons
+                {
+                  if (strstr(model_name, "Opteron"))
+                  {
+                    cpu = "opteron";
+                  }
+                  else if (strstr(model_name, "Athlon(tm) 64")) //Also athlon-fx
+                  {
+                    cpu = "athlon64";
+                  }
+                  else
+                  {
+                    cpu = "k8";
+                  }
+                }
+                #endif
+                if (!cpu)
+                {
+                  if (strstr(model_name, "Athlon(tm) 4"))
+                  {
+                    cpu = "athlon-4";
+                  }
+                  else if (strstr(model_name, "Athlon(tm) MP"))
+                  {
+                    cpu = "athlon-mp";
+                  }
+                  else
+                  {
+                    cpu = "athlon-xp";
+                  }
+                }
+              }
+
+              if (!cpu && (atoi(model) > 3))
+              {
+                cpu = "athlon-tbird";
+              }
+              #endif
+
+              if (!cpu)
+              {
+                cpu = "athlon";
+              }
+            }
+
+            #if __GNUC__ > 3 || __GNUC_MINOR__ > 0
+            if (!cpu)
+            {
+              int model_num = atoi(model);
+              if ((model_num == 9) || (model_num >= 13))
+              {
+                cpu = "k6-3";
+              }
+              else
+              {
+                cpu = "k6-2";
+              }
+            }
+            #endif
+          }
+          #endif
+
+          if (!cpu)
+          {
+            cpu = "k6";
+          }
+        }
+      }
+      else if (!strcmp(vendor_id, "GenuineIntel") || strstr(model_name, "Intel"))
       {
         #if __GNUC__ > 2
-        if (strstr(flags, " 3dnow "))
+        if (strstr(flags, " mmx "))
         {
-          if (strstr(flags, " 3dnowext ") && (atoi(cpu_family) > 5))
+          if (strstr(flags, " sse "))
           {
-            #if __GNUC__ > 3 || __GNUC_MINOR__ > 0
-            if (strstr(flags, " sse "))
+            if (strstr(flags, " sse2 "))
             {
-              #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
-              if (strstr(flags, " sse2 ") && strstr(flags, " lm ")) //Need two checks to protect Semprons
+              #if __GNUC__ > 3 || __GNUC_MINOR__ > 2
+              if (strstr(flags, " pni ") && strcmp(cpu_family, "6"))
               {
-                if (strstr(model_name, "Opteron"))
+                if (strstr(flags, " lm "))
                 {
-                  cpu = "opteron";
-                }
-                else if (strstr(model_name, "Athlon(tm) 64")) //Also athlon-fx
-                {
-                  cpu = "athlon64";
+                  cpu = "nocona";
                 }
                 else
                 {
-                  cpu = "k8";
+                  cpu = "prescott";
                 }
               }
               #endif
+
               if (!cpu)
               {
-                if (strstr(model_name, "Athlon(tm) 4"))
+                if (!strcmp(cpu_family, "6"))
                 {
-                  cpu = "athlon-4";
-                }
-                else if (strstr(model_name, "Athlon(tm) MP"))
-                {
-                  cpu = "athlon-mp";
+                  #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
+                  cpu = "pentium-m";
+                  #else
+                  cpu = "pentium3";
+                  #endif
                 }
                 else
                 {
-                  cpu = "athlon-xp";
+                  #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
+                  if (strstr(model_name, "Mobile"))
+                  {
+                    cpu = "pentium4m";
+                  }
+                  #endif
+
+                  if (!cpu)
+                  {
+                    cpu = "pentium4";
+                  }
                 }
               }
             }
-
-            if (!cpu && (atoi(model) > 3))
+            else
             {
-              cpu = "athlon-tbird";
-            }
-            #endif
+              #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
+              if (strstr(model_name, "Mobile"))
+              {
+                cpu = "pentium3m";
+              }
+              #endif
 
-            if (!cpu)
-            {
-              cpu = "athlon";
+              if (!cpu)
+              {
+                cpu = "pentium3";
+              }
             }
           }
-
-          #if __GNUC__ > 3 || __GNUC_MINOR__ > 0
-          if (!cpu)
+          else
           {
-            int model_num = atoi(model);
-            if ((model_num == 9) || (model_num >= 13))
+            if (!strcmp(cpu_family, "6"))
             {
-              cpu = "k6-3";
+              cpu = "pentium2";
             }
             else
             {
-              cpu = "k6-2";
+              cpu = "pentium-mmx";
             }
           }
-          #endif
         }
         #endif
 
         if (!cpu)
         {
-          cpu = "k6";
+          int family = atoi(cpu_family);
+          if (family > 5)
+          {
+            cpu = "pentiumpro";
+          }
+          else if (family == 5)
+          {
+            cpu = "pentium";
+          }
         }
       }
-    }
-    else if (!strcmp(vendor_id, "GenuineIntel") || strstr(model_name, "Intel"))
-    {
       #if __GNUC__ > 2
-      if (strstr(flags, " mmx "))
+      #if __GNUC__ > 3 || __GNUC_MINOR__ > 2
+      else if (!strcmp(vendor_id, "CentaurHauls") && strstr(flags, " mmx "))
       {
-        if (strstr(flags, " sse "))
+        if (strstr(flags, " 3dnow "))
         {
-          if (strstr(flags, " sse2 "))
+          if (atoi(cpu_family) > 5)
           {
-            #if __GNUC__ > 3 || __GNUC_MINOR__ > 2
-            if (strstr(flags, " pni ") && strcmp(cpu_family, "6"))
-            {
-              if (strstr(flags, " lm "))
-              {
-                cpu = "nocona";
-              }
-              else
-              {
-                cpu = "prescott";
-              }
-            }
-            #endif
-
-            if (!cpu)
-            {
-              if (!strcmp(cpu_family, "6"))
-              {
-                #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
-                cpu = "pentium-m";
-                #else
-                cpu = "pentium3";
-                #endif
-              }
-              else
-              {
-                #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
-                if (strstr(model_name, "Mobile"))
-                {
-                  cpu = "pentium4m";
-                }
-                #endif
-
-                if (!cpu)
-                {
-                  cpu = "pentium4";
-                }
-              }
-            }
+            cpu = "c3";
           }
           else
           {
-            #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
-            if (strstr(model_name, "Mobile"))
-            {
-              cpu = "pentium3m";
-            }
-            #endif
-
-            if (!cpu)
-            {
-              cpu = "pentium3";
-            }
+            cpu = "winchip2";
           }
         }
-        else
+        #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
+        else if (strstr(flags, " sse "))
         {
-          if (!strcmp(cpu_family, "6"))
-          {
-            cpu = "pentium2";
-          }
-          else
-          {
-            cpu = "pentium-mmx";
-          }
+          cpu = "c3-2";
+        }
+        #endif
+
+        if (!cpu)
+        {
+          cpu = "winchip-c6";
         }
       }
+      #endif
       #endif
 
       if (!cpu)
@@ -363,71 +464,56 @@ int main(int argc, const char *const *const argv)
         int family = atoi(cpu_family);
         if (family > 5)
         {
-          cpu = "pentiumpro";
+          cpu = "i686";
         }
         else if (family == 5)
         {
-          cpu = "pentium";
+          cpu = "i586";
         }
-      }
-    }
-    #if __GNUC__ > 2
-    #if __GNUC__ > 3 || __GNUC_MINOR__ > 2
-    else if (!strcmp(vendor_id, "CentaurHauls") && strstr(flags, " mmx "))
-    {
-      if (strstr(flags, " 3dnow "))
-      {
-        if (atoi(cpu_family) > 5)
+        else if (family == 4)
         {
-          cpu = "c3";
+          cpu = "i486";
         }
         else
         {
-          cpu = "winchip2";
+          cpu = "i386";
         }
       }
-      #if __GNUC__ > 3 || __GNUC_MINOR__ > 3
+      #else //MSVC
+      cpu = cpubuf;
+      *cpu = 0;
+
+      if (strstr(flags, " sse2 "))
+      {
+        strcat(cpu, " /arch:SSE2");
+      }
       else if (strstr(flags, " sse "))
       {
-        cpu = "c3-2";
+        strcat(cpu, " /arch:SSE");
+      }
+
+      #ifdef __x86_64__
+      if (strstr(flags, " lm ")) //64 bit
+      {
+        if (!strcmp(vendor_id, "AuthenticAMD") || strstr(model_name, "AMD"))
+        {
+          strcat(cpu, " /favor:AMD64");
+        }
+        else if (!strcmp(vendor_id, "GenuineIntel") || strstr(model_name, "Intel"))
+        {
+          strcat(cpu, " /favor:EM64T");
+        }
       }
       #endif
-
-      if (!cpu)
-      {
-        cpu = "winchip-c6";
-      }
+      #endif
     }
-    #endif
-    #endif
-
-    if (!cpu)
+    else
     {
-      int family = atoi(cpu_family);
-      if (family > 5)
-      {
-        cpu = "i686";
-      }
-      else if (family == 5)
-      {
-        cpu = "i586";
-      }
-      else if (family == 4)
-      {
-        cpu = "i486";
-      }
-      else
-      {
-        cpu = "i386";
-      }
+      puts("Could not open /proc/cpuinfo, and CPUID instruction not available.");
+      return(1);
     }
-    puts(cpu);
   }
-  else
-  {
-    puts("Could not open /proc/cpuinfo, and CPUID instruction not available.");
-    return(1);
-  }
+  puts(cpu);
 
   return(0);
 }

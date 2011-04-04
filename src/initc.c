@@ -1649,9 +1649,9 @@ static void SPC7PathSetup(char *PathVar, const char *Default)
   }
 }
 
-extern unsigned int MsgCount, MessageOn, CRC32;
+extern unsigned int MsgCount, MessageOn;
 extern char *Msgptr;
-unsigned int SPC7110Entries;
+unsigned int SPC7110Entries, CRC32;
 
 void SPC7PackIndexLoad()
 {
