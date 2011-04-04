@@ -55,6 +55,7 @@ override_dh_installdocs:
 	# Install HTML documentation
 	install -d debian/zsnes/usr/share/doc/zsnes
 	cp -a docs/readme.htm debian/zsnes/usr/share/doc/zsnes/html
+	rm debian/zsnes/usr/share/doc/zsnes/html/license.htm
 
 override_dh_compress:
 	dh_compress -Xdeb.set
