@@ -2,6 +2,11 @@ From: Etienne Millon <etienne.millon@gmail.com>
 Date: Tue, 2 Nov 2010 17:04:53 +0100
 Subject: gcc-4.3-ftbfs
 
+Miscellaneous fixes to build with gcc 4.3:
+
+  - missing headers
+  - argc should have type int, not size_t
+
 ---
  src/parsegen.cpp       |    3 ++-
  src/tools/depbuild.cpp |    3 ++-
@@ -9,7 +14,7 @@ Subject: gcc-4.3-ftbfs
  3 files changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/src/parsegen.cpp b/src/parsegen.cpp
-index 98e9acd..d36513a 100644
+index e664dc5..9f78fb4 100644
 --- a/src/parsegen.cpp
 +++ b/src/parsegen.cpp
 @@ -26,6 +26,7 @@ Config file handler creator by Nach (C) 2005-2007
@@ -20,12 +25,12 @@ index 98e9acd..d36513a 100644
  #include <vector>
  #include <algorithm>
  #include <sstream>
-@@ -1828,7 +1829,7 @@ void parser_generate(istream& psr_stream, ostream& c_stream, ostream& cheader_st
+@@ -1822,7 +1823,7 @@ void parser_generate(istream& psr_stream, ostream& c_stream, ostream& cheader_st
    }
  }
  
--int main(size_t argc, const char **argv)
-+int main(int argc, const char **argv)
+-int main(size_t argc, const char *const *const argv)
++int main(int argc, const char *const *const argv)
  {
    const char *cheader_file = 0;
    bool compile = false;

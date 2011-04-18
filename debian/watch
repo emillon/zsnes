@@ -1,3 +1,3 @@
 version=3
-opts="uversionmangle=s/(\d)(\d\d)/$1.${2}0/" \
+opts="uversionmangle=s/(\d)(\d\d)/$1.${2}0/,dversionmangle=s/\+bz2//" \
   http://sf.net/zsnes/zsnes(.+)src.tar.bz2
