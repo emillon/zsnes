@@ -1,6 +1,6 @@
-zsnes (1.510+bz2-1+debugger) UNRELEASED; urgency=low
+zsnes (1.510+bz2-2) UNRELEASED; urgency=low
 
-  * Enable debugger (Closes: #513201)
+  * Enable the built-in debugger (Closes: #513201).
 
  -- Etienne Millon <etienne.millon@gmail.com>  Mon, 18 Apr 2011 11:39:34 +0200
 
