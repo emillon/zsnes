@@ -13,7 +13,7 @@
 DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 
 %:
-	dh $@ --sourcedirectory=src --with autotools_dev
+	dh $@ --sourcedirectory=src --with autoreconf
 
 ifeq ($(DEB_HOST_ARCH_CPU),i386)
 CONFIGURE_LIBAO := --enable-libao
