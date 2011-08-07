@@ -6,19 +6,17 @@ The license in HTML format is redundant with respect to the copyright
 information available at /usr/share/doc/zsnes/copyright. This patch prevents the
 installation of license.htm and replaces references to it by the former.
 ---
- docs/readme.htm/about.htm    |    8 +-
- docs/readme.htm/advanced.htm |    6 +-
- docs/readme.htm/faq.htm      |    6 +-
- docs/readme.htm/games.htm    |    6 +-
- docs/readme.htm/gui.htm      |    8 +-
- docs/readme.htm/history.htm  |    6 +-
- docs/readme.htm/index.htm    |    8 +-
- docs/readme.htm/license.htm  |  562 ------------------------------------------
- docs/readme.htm/netplay.htm  |    6 +-
- docs/readme.htm/readme.htm   |    8 +-
- docs/readme.htm/support.htm  |    6 +-
- 11 files changed, 34 insertions(+), 596 deletions(-)
- delete mode 100644 docs/readme.htm/license.htm
+ docs/readme.htm/about.htm    |    8 ++++----
+ docs/readme.htm/advanced.htm |    6 +++---
+ docs/readme.htm/faq.htm      |    6 +++---
+ docs/readme.htm/games.htm    |    6 +++---
+ docs/readme.htm/gui.htm      |    8 ++++----
+ docs/readme.htm/history.htm  |    6 +++---
+ docs/readme.htm/index.htm    |    8 ++++----
+ docs/readme.htm/netplay.htm  |    6 +++---
+ docs/readme.htm/readme.htm   |    8 ++++----
+ docs/readme.htm/support.htm  |    6 +++---
+ 10 files changed, 34 insertions(+), 34 deletions(-)
 
 diff --git a/docs/readme.htm/about.htm b/docs/readme.htm/about.htm
 index 5d8135b..9b82bf0 100644

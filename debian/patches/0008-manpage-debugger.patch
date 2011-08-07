@@ -1,6 +1,6 @@
 From: Etienne Millon <etienne.millon@gmail.com>
 Date: Thu, 2 Dec 2010 10:44:05 +0100
-Subject: [PATCH] manpage-debugger
+Subject: manpage-debugger
 
 This documents the use of the '-d' switch.
 ---

@@ -6,7 +6,6 @@ Miscellaneous fixes to build with gcc 4.3:
 
   - missing headers
   - argc should have type int, not size_t
-
 ---
  src/parsegen.cpp       |    3 ++-
  src/tools/depbuild.cpp |    3 ++-
