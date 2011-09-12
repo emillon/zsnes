@@ -8,6 +8,7 @@ Build-Depends:
  debhelper (>= 8),
  nasm,
  libsdl1.2-dev (>= 1.2.2-3.1),
+ libgl1-mesa-dev | libgl-dev,
  sharutils,
  libpng12-dev | libpng-dev,
  dh-autoreconf,

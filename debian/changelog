@@ -4,8 +4,10 @@ zsnes (1.510+bz2-2) UNRELEASED; urgency=low
   * Use dh-autoreconf instead of autotools-dev.
   * Add a patch fixing hat positions not resetting properly (thanks to hakonrk
     & Simeon Maxein).
+  * Add explicit dependency on libgl-dev or its implementation
+    (Closes: #641277, thanks to Matthias Klose).
 
- -- Etienne Millon <etienne.millon@gmail.com>  Sun, 07 Aug 2011 13:12:42 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Mon, 12 Sep 2011 12:35:13 +0200
 
 zsnes (1.510+bz2-1) unstable; urgency=low
 
