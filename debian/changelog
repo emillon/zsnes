@@ -1,5 +1,7 @@
 zsnes (1.510+bz2-2) UNRELEASED; urgency=low
 
+  * Add a patch to fix build with libpng 1.5
+    (Closes: #649801, thanks to Nobuhiro Iwamatsu).
   * Enable the built-in debugger (Closes: #513201).
   * Use dh-autoreconf instead of autotools-dev.
   * Add a patch fixing hat positions not resetting properly (thanks to hakonrk
@@ -7,7 +9,7 @@ zsnes (1.510+bz2-2) UNRELEASED; urgency=low
   * Add explicit dependency on libgl-dev or its implementation
     (Closes: #641277, thanks to Matthias Klose).
 
- -- Etienne Millon <etienne.millon@gmail.com>  Mon, 12 Sep 2011 12:35:13 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Thu, 24 Nov 2011 12:41:47 +0100
 
 zsnes (1.510+bz2-1) unstable; urgency=low
 

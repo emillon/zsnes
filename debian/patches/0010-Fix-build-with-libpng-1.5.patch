@@ -1,0 +1,22 @@
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date: Thu, 24 Nov 2011 16:57:40 +0900
+Subject: Fix build with libpng 1.5
+
+Fixes #649801.
+---
+ src/zip/zpng.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+diff --git a/src/zip/zpng.c b/src/zip/zpng.c
+index 1e95a0c..8721ac4 100644
+--- a/src/zip/zpng.c
++++ b/src/zip/zpng.c
+@@ -129,7 +129,6 @@ int Png_Dump(const char *filename, unsigned short width, unsigned short height,
+         png_set_IHDR(png_ptr, info_ptr, width, height, 8,
+                      PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
+                      PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+-        info_ptr->color_type = PNG_COLOR_TYPE_RGB;
+ 
+         //Allocate an array of scanline pointers
+         row_pointers = (png_bytep*)malloc(height*sizeof(png_bytep));
+-- 

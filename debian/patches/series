@@ -7,3 +7,4 @@
 0007-removed-license-in-html-doc.patch
 0008-manpage-debugger.patch
 0009-hat-events.patch
+0010-Fix-build-with-libpng-1.5.patch
