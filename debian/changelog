@@ -8,8 +8,9 @@ zsnes (1.510+bz2-2) unstable; urgency=low
     & Simeon Maxein).
   * Add explicit dependency on libgl-dev or its implementation
     (Closes: #641277, thanks to Matthias Klose).
+  * Bump Standards-Version to 3.9.2 (no changes).
 
- -- Etienne Millon <etienne.millon@gmail.com>  Sun, 18 Dec 2011 21:17:43 +0100
+ -- Etienne Millon <etienne.millon@gmail.com>  Sun, 18 Dec 2011 21:30:11 +0100
 
 zsnes (1.510+bz2-1) unstable; urgency=low
 
