@@ -65,4 +65,3 @@ index 4d8cc3f..683b1dc 100644
      {
        static char buffer[29]; //"ROM MISMATCH. NEED: 01234567"
        sprintf(buffer, "ROM MISMATCH. NEED: %08X", zmv_vars.header.rom_crc32);
--- 

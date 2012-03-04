@@ -22,4 +22,3 @@ index 4c49a79..31a8c6e 100644
  uninstall:
  	rm -f @prefix@/bin/$(notdir @ZSNESEXE@) @prefix@/man/man1/zsnes.1
  
--- 

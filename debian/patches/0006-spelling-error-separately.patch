@@ -20,4 +20,3 @@ index 0634b83..2f0cb57 100644
  md_compressed_audio times 50 db "audio.mp3" @ For when selecting compressed
  md_logo times 50 db "" @If you want a logo, specify a logo file. It should be a series of frames 256x224x24.
  @
--- 

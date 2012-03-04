@@ -19,4 +19,3 @@ index 1e95a0c..8721ac4 100644
  
          //Allocate an array of scanline pointers
          row_pointers = (png_bytep*)malloc(height*sizeof(png_bytep));
--- 

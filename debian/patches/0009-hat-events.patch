@@ -58,4 +58,3 @@ index 05c52b1..4274c9d 100644
              break;
            case SDL_HAT_LEFTUP:
              pressed[offset + 1] = 1;
--- 

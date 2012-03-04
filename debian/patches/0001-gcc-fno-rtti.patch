@@ -20,4 +20,3 @@ index 0dbbb43..09c6f12 100755
  
  if test x$enable_jma != xno; then
    JMA_FILES="\$(JMA_D)/7zlzma.o \$(JMA_D)/crc32.o \$(JMA_D)/iiostrm.o\
--- 
