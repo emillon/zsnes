@@ -1,0 +1,45 @@
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Sun, 4 Mar 2012 15:24:34 +0100
+Subject: Don't strip binaries upstream
+
+In order to honor DEB_BUILD_OPTIONS=nostrip, upstream build system should not
+strip binaries.
+
+Bug-Debian: http://bugs.debian.org/438384
+---
+ src/configure.in |    6 ++----
+ 1 files changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/src/configure.in b/src/configure.in
+index 8eece58..410add1 100644
+--- a/src/configure.in
++++ b/src/configure.in
+@@ -58,7 +58,6 @@ CFLAGS="$CFLAGS -D__UNIXSDL__"
+ NFLAGS="$NFLAGS -w-orphan-labels -D__UNIXSDL__"
+ PSRFLAGS="$PSRFLAGS -D__UNIXSDL__"
+ MMLIB_FILES="\$(MMLIB_D)/mm.o"
+-STRIP="-s"
+ case x$target in
+   *-*-linux*)
+     NFLAGS="$NFLAGS -f elf -DELF"
+@@ -77,7 +76,6 @@ case x$target in
+     NFLAGS="$NFLAGS -D__MACOSX__ -D__OPENGL__ -f macho -DMACHO"
+     PSRFLAGS="$PSRFLAGS -D__OPENGL__"
+     MMLIB_FILES="$MMLIB_FILES \$(MMLIB_D)/osx.o"
+-    STRIP=""
+     LDFLAGS="$LDFLAGS -framework Carbon -framework IOKit -framework Foundation -framework OpenGL -mdynamic-no-pic -read_only_relocs suppress -undefined dynamic_lookup"
+     GL_DRAW="\$(PORT_D)/gl_draw.o"
+     found_opengl=yes
+@@ -292,10 +290,10 @@ else
+     if test x$force_arch = x; then
+       AC_MSG_WARN([If you intend to distribute this binary, make sure you use force_arch and set to i586 (or whichever CPU Arch you intend for)])
+     fi
+-    CFLAGS="$CFLAGS -O3 -fomit-frame-pointer -fprefetch-loop-arrays -fforce-addr $STRIP -D__RELEASE__"
++    CFLAGS="$CFLAGS -O3 -fomit-frame-pointer -fprefetch-loop-arrays -fforce-addr -D__RELEASE__"
+     NFLAGS="$NFLAGS -O99999999 -D__RELEASE__"
+   else
+-    CFLAGS="$CFLAGS -O3 -fomit-frame-pointer $STRIP"
++    CFLAGS="$CFLAGS -O3 -fomit-frame-pointer"
+     NFLAGS="$NFLAGS -O1"
+   fi
+ fi

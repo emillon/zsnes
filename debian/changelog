@@ -1,3 +1,9 @@
+zsnes (1.510+bz2-3) unstable; urgency=low
+
+  * New patch to handle the nostrip build option (Closes: #438384)
+
+ -- Etienne Millon <etienne.millon@gmail.com>  Sun, 04 Mar 2012 15:28:00 +0100
+
 zsnes (1.510+bz2-2) unstable; urgency=low
 
   * Add a patch to fix build with libpng 1.5
