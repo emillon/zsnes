@@ -5,7 +5,7 @@ Subject: manpage-in-usr-share-man
 Manpage should go in /usr/share/man, not /usr/man.
 ---
  src/Makefile.in |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/Makefile.in b/src/Makefile.in
 index 4c49a79..31a8c6e 100644

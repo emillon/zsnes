@@ -5,7 +5,7 @@ Subject: manpage-debugger
 This documents the use of the '-d' switch.
 ---
  src/linux/zsnes.1 |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+ 1 file changed, 3 insertions(+)
 
 diff --git a/src/linux/zsnes.1 b/src/linux/zsnes.1
 index 5ecef60..c925c95 100644

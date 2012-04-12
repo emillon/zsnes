@@ -6,8 +6,8 @@ Plain '-' characters in the manpage are rendered as hyphens, not minus signs
 (like command-line switches). This patch converts those hyphens to minus signs,
 en-dashes (for ranges) and proper hyphens.
 ---
- src/linux/zsnes.1 |  106 ++++++++++++++++++++++++++--------------------------
- 1 files changed, 53 insertions(+), 53 deletions(-)
+ src/linux/zsnes.1 |  106 ++++++++++++++++++++++++++---------------------------
+ 1 file changed, 53 insertions(+), 53 deletions(-)
 
 diff --git a/src/linux/zsnes.1 b/src/linux/zsnes.1
 index ad936d4..5ecef60 100644

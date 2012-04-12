@@ -16,7 +16,7 @@ https://bugs.launchpad.net/ubuntu/+source/zsnes/+bug/519845
 ===================================================================
 ---
  src/linux/sdllink.c |    8 ++++++++
- 1 files changed, 8 insertions(+), 0 deletions(-)
+ 1 file changed, 8 insertions(+)
 
 diff --git a/src/linux/sdllink.c b/src/linux/sdllink.c
 index 05c52b1..4274c9d 100644

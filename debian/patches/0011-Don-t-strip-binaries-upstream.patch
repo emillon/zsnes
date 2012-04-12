@@ -8,7 +8,7 @@ strip binaries.
 Bug-Debian: http://bugs.debian.org/438384
 ---
  src/configure.in |    6 ++----
- 1 files changed, 2 insertions(+), 4 deletions(-)
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/src/configure.in b/src/configure.in
 index 8eece58..410add1 100644

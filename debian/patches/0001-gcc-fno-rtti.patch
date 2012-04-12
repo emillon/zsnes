@@ -5,7 +5,7 @@ Subject: gcc-fno-rtti
 This patch removes -fno-rtti from CXXFLAGS.
 ---
  src/configure |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/configure b/src/configure
 index 0dbbb43..09c6f12 100755

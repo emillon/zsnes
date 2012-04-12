@@ -5,7 +5,7 @@ Subject: Fix build with libpng 1.5
 Fixes #649801.
 ---
  src/zip/zpng.c |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
+ 1 file changed, 1 deletion(-)
 
 diff --git a/src/zip/zpng.c b/src/zip/zpng.c
 index 1e95a0c..8721ac4 100644

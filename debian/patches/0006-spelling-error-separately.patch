@@ -5,7 +5,7 @@ Subject: spelling-error-separately
 This patch fixes a spelling error in src/md.psr.
 ---
  src/md.psr |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/md.psr b/src/md.psr
 index 0634b83..2f0cb57 100644
