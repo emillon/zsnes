@@ -3,8 +3,9 @@ zsnes (1.510+bz2-3) unstable; urgency=low
   * New patches :
     - handle the nostrip build option (Closes: #438384)
     - fix FTBFS with gcc 4.7 (Closes: #667429)
+  * Build-depend on libpng-dev instead of libpng12-dev (Closes: #662578)
 
- -- Etienne Millon <etienne.millon@gmail.com>  Thu, 12 Apr 2012 18:05:41 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Tue, 01 May 2012 16:50:24 +0200
 
 zsnes (1.510+bz2-2) unstable; urgency=low
 
