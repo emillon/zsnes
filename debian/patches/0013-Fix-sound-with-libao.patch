@@ -1,0 +1,39 @@
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Tue, 1 May 2012 23:45:40 +0200
+Subject: Fix sound with libao
+
+Origin: http://board.zsnes.com/phpBB3/viewtopic.php?f=2&t=10918
+Applied-Upstream: https://zsnes.bountysource.com/svn/!source/5200/trunk/src/linux/audio.c
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=470410
+---
+ src/linux/audio.c |   10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/linux/audio.c b/src/linux/audio.c
+index d31f6bf..985855c 100644
+--- a/src/linux/audio.c
++++ b/src/linux/audio.c
+@@ -177,11 +177,7 @@ static int SoundInit_ao()
+   }
+   else
+   {
+-    if (pthread_create(&audio_thread, 0, SoundThread_ao, 0))
+-    {
+-      puts("pthread_create() failed.");
+-    }
+-    else if (pthread_mutex_init(&audio_mutex, 0))
++    if (pthread_mutex_init(&audio_mutex, 0))
+     {
+       puts("pthread_mutex_init() failed.");
+     }
+@@ -189,6 +185,10 @@ static int SoundInit_ao()
+     {
+       puts("pthread_cond_init() failed.");
+     }
++    else if (pthread_create(&audio_thread, 0, SoundThread_ao, 0))
++    {
++      puts("pthread_create() failed.");
++    }
+     InitSampleControl();
+   }
+ 
