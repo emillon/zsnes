@@ -20,7 +20,7 @@ Build-Depends: debhelper (>= 8),
                nasm,
                sharutils,
                zlib1g-dev [i386] | lib32z1-dev [amd64]
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Vcs-Git: git://git.debian.org/pkg-games/zsnes.git
 Vcs-Browser: http://git.debian.org/?p=pkg-games/zsnes.git
 
