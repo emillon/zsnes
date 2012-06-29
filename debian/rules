@@ -10,7 +10,6 @@
 #export DH_VERBOSE=1
 #export DH_OPTIONS=-v
 
-export DEB_CFLAGS_MAINT_APPEND = -m32
 export DEB_LDFLAGS_MAINT_APPEND = -lpthread
 
 %:
