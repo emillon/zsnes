@@ -8,24 +8,20 @@ Uploaders: Etienne Millon <etienne.millon@gmail.com>,
 Build-Depends: debhelper (>= 8),
                dh-autoreconf,
                dpkg-dev (>= 1.13.2),
-               g++-multilib [amd64],
-               gcc-multilib [amd64],
-               ia32-libs-dev [amd64],
-               lib32ncurses5-dev [amd64],
-               libao-dev [i386],
+               libao-dev,
                libgl1-mesa-dev | libgl-dev,
                libncurses5-dev | libncurses-dev,
                libpng-dev,
                libsdl1.2-dev (>= 1.2.2-3.1),
                nasm,
                sharutils,
-               zlib1g-dev [i386] | lib32z1-dev [amd64]
+               zlib1g-dev
 Standards-Version: 3.9.3
 Vcs-Git: git://git.debian.org/pkg-games/zsnes.git
 Vcs-Browser: http://git.debian.org/?p=pkg-games/zsnes.git
 
 Package: zsnes
-Architecture: amd64 i386
+Architecture: i386
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Emulator of the Super Nintendo Entertainment System
  ZSNES allows you to play classic games written for the Super Nintendo (SNES)
