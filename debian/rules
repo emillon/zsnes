@@ -10,12 +10,15 @@
 #export DH_VERBOSE=1
 #export DH_OPTIONS=-v
 
+export DEB_CFLAGS_MAINT_APPEND = -m32
+export DEB_LDFLAGS_MAINT_APPEND = -lpthread
+
 %:
 	dh $@ --sourcedirectory=src --with autoreconf
 
 override_dh_auto_configure:
 	dh_auto_configure --sourcedirectory=src -- \
-		CFLAGS=-m32 LDFLAGS=-lpthread --enable-opengl \
+		--enable-opengl \
 		--disable-cpucheck --enable-release \
 		--enable-libao force_arch=i486
 
