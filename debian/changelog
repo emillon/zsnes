@@ -1,6 +1,7 @@
 zsnes (1.510+bz2-4) UNRELEASED; urgency=low
 
   * Disable build on amd64 (Closes: #679526, #672935)
+    - Add Multi-Arch: Foreign
   * debian/compat : use level 9 compatibility level
   * debian/rules :
     - use find -delete instead of shell globbing
