@@ -1,6 +1,7 @@
 zsnes (1.510+bz2-4) UNRELEASED; urgency=low
 
   * Disable build on amd64 (Closes: #679526, #672935)
+  * debian/rules : use find -delete instead of shell globbing
 
  -- Etienne Millon <etienne.millon@gmail.com>  Fri, 29 Jun 2012 17:37:53 +0200
 

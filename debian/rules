@@ -20,7 +20,8 @@ override_dh_auto_configure:
 		--enable-libao force_arch=i486
 
 override_dh_clean:
-	rm -f $$(find src/ -type f -name *.o) src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
+	rm -f src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes
+	find src/ -type f -name '*.o' -delete
 	dh_clean
 
 override_dh_installchangelogs:
