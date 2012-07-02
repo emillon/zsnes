@@ -1,0 +1,21 @@
+From: Fabian Greffrath <fabian+debian@greffrath.com>
+Date: Mon, 2 Jul 2012 11:15:52 +0200
+Subject: Initialize driver_format.matrix with NULL;
+
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=679826
+---
+ src/linux/audio.c |    1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/linux/audio.c b/src/linux/audio.c
+index 985855c..bebf159 100644
+--- a/src/linux/audio.c
++++ b/src/linux/audio.c
+@@ -170,6 +170,7 @@ static int SoundInit_ao()
+   driver_format.channels = StereoSound+1;
+   driver_format.rate = freqtab[SoundQuality = ((SoundQuality > 6) ? 1 : SoundQuality)];
+   driver_format.byte_format = AO_FMT_LITTLE;
++  driver_format.matrix = NULL;
+ 
+   if (audio_device)
+   {
