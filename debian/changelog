@@ -6,7 +6,7 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
     (thanks to Fabian Greffrath & Goswin von Brederlow - Closes: #679826)
   * debian/compat : use level 9 compatibility level
   * debian/rules :
-    - use find -delete instead of shell globbing
+    - use find -delete instead of command expansion
     - use dpkg-buildflags
     - add -Wl,--as-needed to LDFLAGS (Closes: #607311)
 
