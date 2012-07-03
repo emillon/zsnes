@@ -10,6 +10,9 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
     - use dpkg-buildflags
     - add -Wl,--as-needed to LDFLAGS (Closes: #607311)
 
+  [ Eshat Cakar ]
+  * Improve zsnes.desktop file, thanks to Fabian Greffrath (Closes: #680054)
+
  -- Etienne Millon <etienne.millon@gmail.com>  Fri, 29 Jun 2012 17:37:53 +0200
 
 zsnes (1.510+bz2-3) unstable; urgency=low
