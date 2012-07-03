@@ -26,6 +26,14 @@ override_dh_clean:
 	find src/ -type f -name '*.o' -delete
 	dh_clean
 
+override_dh_install:
+	dh_install
+	for res in 16 32 48 64; do \
+		mkdir -p debian/zsnes/usr/share/icons/hicolor/$${res}x$${res}/apps; \
+		cp -f src/icons/$${res}x$${res}x32.png \
+			debian/zsnes/usr/share/icons/hicolor/$${res}x$${res}/apps/zsnes.png; \
+	done
+
 override_dh_installchangelogs:
 	dh_installchangelogs docs/readme.txt/history.txt
 

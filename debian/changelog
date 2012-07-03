@@ -1,5 +1,6 @@
 zsnes (1.510+bz2-4) UNRELEASED; urgency=low
 
+  [ Etienne Millon ]
   * Disable build on amd64 (Closes: #679526)
     - Add Multi-Arch: Foreign
   * Add patch to initialize the ao_sample_format structure
@@ -9,6 +10,7 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
     - use find -delete instead of command expansion
     - use dpkg-buildflags
     - add -Wl,--as-needed to LDFLAGS (Closes: #607311)
+  * Install high-res PNG icons provided with the sources (Closes: #680078)
 
   [ Eshat Cakar ]
   * Improve zsnes.desktop file, thanks to Fabian Greffrath (Closes: #680054)
