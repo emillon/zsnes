@@ -12,3 +12,5 @@
 0012-Fix-build-with-gcc-4.7.patch
 0013-Fix-sound-with-libao.patch
 0014-Initialize-driver_format.matrix-with-NULL.patch
+0015-fortify-source.patch
+0016-parsegen.patch

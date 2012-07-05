@@ -19,6 +19,13 @@ zsnes (1.510+bz2-7) unstable; urgency=low
   * Add myself to Uploaders.
   * 0001-gcc-fno-rtti.patch: Patch src/configure.in instead of the
     auto-generated src/configure.
+  * Append CPPFLAGS to CFLAGS and CXXFLAGS to enable "-D_FORTIFY_SOURCE=2".
+  * 0015-fortify-source.patch: New patch from RPM Fusion by Hans de Goede
+    to fix compilation with "-D_FORTIFY_SOURCE=2" (LP: #250425).
+  * 0016-parsegen.patch: Another patch from RPM Fusion by Ralf Corsepius
+    to create an intermediate .c file instead of an .o file with parsegen,
+    also needed to fix compilation with "-D_FORTIFY_SOURCE=2".
+  * debian/clean: Remove the intermediate .c files in the clean rule.
 
  -- Etienne Millon <etienne.millon@gmail.com>  Fri, 29 Jun 2012 17:37:53 +0200
 
