@@ -3,14 +3,11 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
   [ Etienne Millon ]
   * Disable build on amd64 (Closes: #679526)
     - Add Multi-Arch: Foreign
-  * Add patch to initialize the ao_sample_format structure
-    (thanks to Fabian Greffrath & Goswin von Brederlow - Closes: #679826)
   * debian/compat : use level 9 compatibility level
   * debian/rules :
     - use find -delete instead of command expansion
     - use dpkg-buildflags
     - add -Wl,--as-needed to LDFLAGS (Closes: #607311)
-  * Install high-res PNG icons provided with the sources (Closes: #680078)
 
   [ Eshat Cakar ]
   * Improve zsnes.desktop file, thanks to Fabian Greffrath (Closes: #680054)
@@ -19,6 +16,9 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
   * Add myself to Uploaders.
   * 0001-gcc-fno-rtti.patch: Patch src/configure.in instead of the
     auto-generated src/configure.
+  * Add patch to initialize the ao_sample_format structure
+    (thanks also to Goswin von Brederlow - Closes: #679826)
+  * Install high-res PNG icons provided with the sources (Closes: #680078)
 
  -- Etienne Millon <etienne.millon@gmail.com>  Fri, 29 Jun 2012 17:37:53 +0200
 
