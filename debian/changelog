@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-7) unstable; urgency=low
+zsnes (1.510+bz2-4) UNRELEASED; urgency=low
 
   [ Etienne Millon ]
   * Disable build on amd64 (Closes: #679526)
