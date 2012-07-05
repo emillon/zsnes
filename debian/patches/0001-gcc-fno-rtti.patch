@@ -7,11 +7,9 @@ This patch removes -fno-rtti from CXXFLAGS.
  src/configure |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/configure b/src/configure
-index 0dbbb43..09c6f12 100755
---- a/src/configure
-+++ b/src/configure
-@@ -5237,7 +5237,7 @@ echo "$as_me: WARNING: If you intend to distribute this binary, make sure you us
+--- a/src/configure.in
++++ b/src/configure.in
+@@ -299,7 +299,7 @@ else
      NFLAGS="$NFLAGS -O1"
    fi
  fi

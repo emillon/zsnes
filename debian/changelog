@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-4) UNRELEASED; urgency=low
+zsnes (1.510+bz2-7) unstable; urgency=low
 
   [ Etienne Millon ]
   * Disable build on amd64 (Closes: #679526)
@@ -14,6 +14,11 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
 
   [ Eshat Cakar ]
   * Improve zsnes.desktop file, thanks to Fabian Greffrath (Closes: #680054)
+
+  [ Fabian Greffrath ]
+  * Add myself to Uploaders.
+  * 0001-gcc-fno-rtti.patch: Patch src/configure.in instead of the
+    auto-generated src/configure.
 
  -- Etienne Millon <etienne.millon@gmail.com>  Fri, 29 Jun 2012 17:37:53 +0200
 
