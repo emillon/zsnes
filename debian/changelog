@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-4) UNRELEASED; urgency=low
+zsnes (1.510+bz2-4) unstable; urgency=low
 
   [ Etienne Millon ]
   * Disable build on amd64 (Closes: #679526)
@@ -20,7 +20,7 @@ zsnes (1.510+bz2-4) UNRELEASED; urgency=low
     (thanks also to Goswin von Brederlow - Closes: #679826)
   * Install high-res PNG icons provided with the sources (Closes: #680078)
 
- -- Etienne Millon <etienne.millon@gmail.com>  Fri, 29 Jun 2012 17:37:53 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Fri, 06 Jul 2012 08:27:08 +0200
 
 zsnes (1.510+bz2-3) unstable; urgency=low
 
