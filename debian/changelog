@@ -7,6 +7,7 @@ zsnes (1.510+bz2-5) UNRELEASED; urgency=low
     upstream SVN.
   * 0014-Initialize-driver_format.matrix-with-NULL.patch: Only keep the
     memset() part as discussed with upstream author Nach on the ZSNES board.
+  * Set Architecture: any-i386.
 
   [ Etienne Millon ]
   * Fix crashes on resume : use int64s instead of floats in sem_GetTicks().
