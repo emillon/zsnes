@@ -1,6 +1,7 @@
 zsnes (1.510+bz2-5) UNRELEASED; urgency=low
 
   [ Fabian Greffrath ]
+  * 0001-gcc-fno-rtti.patch: Removed, one less deviation from upstream.
   * 0002-replace_crc32.patch: Removed, not actually needed at all.
   * 0013-Fix-sound-with-libao.patch: Replace with the actual patch from
     upstream SVN.
