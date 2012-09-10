@@ -1,39 +1,6 @@
-Author: Hans de Goede
+Subject: Fix compilation with FORTIFY_SOURCE.
 Origin: http://cvs.rpmfusion.org/viewvc/rpms/zsnes/devel/zsnes-1.51-FORTIFY_SOURCE.patch?root=free&view=markup
 Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/intrepid/+source/zsnes/+bug/250425
-Subject: Upstream has strange memory manipulations that upset FORTIFY_SOURCE
- The problem is an interaction between the uncommon (to put it mildly) way
- zsnes calls memcpy to restore its global state from the "regsbackup" buffer,
- and _FORTIFY_SOURCE:
- .
- gcc -ggdb3 -pipe -I. -I/usr/local/include -I/usr/include -D__UNIXSDL__
- -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -DNO_DEBUGGER -D__LIBAO__
- -D__OPENGL__ -march=i486 -O3 -fomit-frame-pointer -fprefetch-loop-arrays
- -fforce-addr -s -D__RELEASE__ -o initc.o -c initc.c
- [...]
- In function ‘memcpy’,
-    inlined from ‘powercycle’ at initc.c:2624:
- /usr/include/bits/string3.h:52: warning: call to __builtin___memcpy_chk will
- always overflow destination buffer
- .
- The corresponding block of code is:
- .
-    sramsavedis = 0;
-    memcpy(&sndrot, regsbackup, 3019);
- .
- And the declaration for the relevant variables, from the same file:
- .
- extern unsigned char NextLineCache, sramsavedis, sndrot, regsbackup[3019];
- .
- The reason this strange memcpy call will always work correctly is that the
- storage for sndrot and the rest of the state variables is allocated in
- assembly (cpu/regs.inc, included from cpu/table.asm), in a way which
- guarantees that all the correct variables will be sequential in memory, with
- no padding (sndrot is just the first variable on that block). However, gcc
- cannot know that; it sees instead an attempt to write 3019 bytes to a single
- byte-sized variable, which will obviously overflow (and, in fact, overflowing
- is precisely the desired behaviour!).
- <https://bugs.launchpad.net/ubuntu/intrepid/+source/zsnes/+bug/250425/comments/45>
 
 --- a/src/initc.c
 +++ b/src/initc.c
@@ -120,3 +87,14 @@ Subject: Upstream has strange memory manipulations that upset FORTIFY_SOURCE
  extern unsigned char vidmemch4[4096], vidmemch8[4096], vidmemch2[4096];
  
  extern bool C4Enable, SFXEnable, SA1Enable, SPC7110Enable, SETAEnable, DSP4Enable, spcon;
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -95,7 +95,7 @@ Z_OBJS=$(MAIN_O) $(CHIP_O) $(CPU_O) $(DE
+ %.o: %.cpp
+ 	@CXX@ @CXXFLAGS@ -o $@ -c $<
+ %.o %.h: %.psr $(PSR)
+-	./$(PSR) @PSRFLAGS@ -gcc @CC@ -compile -flags "@CFLAGS@ -O1" -cheader $*.h -fname $* $*.o $<
++	./$(PSR) @PSRFLAGS@ -gcc @CC@ -compile -flags "@CFLAGS@" -cheader $*.h -fname $* $*.o $<
+ 
+ default: main
+ all: main tools
