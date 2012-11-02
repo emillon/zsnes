@@ -19,7 +19,7 @@ override_dh_auto_configure:
 	dh_auto_configure --sourcedirectory=src -- \
 		--enable-opengl \
 		--disable-cpucheck --enable-release \
-		--enable-libao force_arch=i486
+		force_arch=i486
 
 override_dh_clean:
 	rm -f src/Makefile src/cfg.h src/config.h src/config.log src/config.status src/input.h src/makefile.dep src/md.h src/parsegen src/tools/depbuild src/zsnes

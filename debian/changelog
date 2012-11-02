@@ -1,3 +1,12 @@
+zsnes (1.510+bz2-5) unstable; urgency=low
+
+  * Build zsnes without libao support for wheezy.
+    libao has often been a source of trouble for zsnes. Without libao support
+    it will fall back to the SDL audio driver. Furthermore it will make it
+    possible to install the zsnes package via multi-arch (see #638741).
+
+ -- Fabian Greffrath <fabian+debian@greffrath.com>  Fri, 02 Nov 2012 15:07:44 +0100
+
 zsnes (1.510+bz2-4) unstable; urgency=low
 
   [ Etienne Millon ]
