@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-5) UNRELEASED; urgency=low
+zsnes (1.510+bz2-6) UNRELEASED; urgency=low
 
   [ Fabian Greffrath ]
   * 0001-gcc-fno-rtti.patch: Removed, one less deviation from upstream.
