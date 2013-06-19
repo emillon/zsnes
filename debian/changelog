@@ -10,6 +10,7 @@ zsnes (1.510+bz2-6) UNRELEASED; urgency=low
   * Set Architecture: any-i386.
   * Add CPPFLAGS to CFLAGS and CXXFLAGS to enable full hardening flags.
   * fortify-source.patch: New patch to fix compilation with FORTIFY_SOURCE.
+    (Closes: #698990)
 
   [ Etienne Millon ]
   * Fix crashes on resume : use int64s instead of floats in sem_GetTicks().
