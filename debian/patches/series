@@ -12,3 +12,4 @@
 0014-Initialize-driver_format.matrix-with-NULL.patch
 zsnes-linux-resume-freeze-fix.patch
 fortify-source.patch
+fortify-source-load.patch

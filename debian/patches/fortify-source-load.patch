@@ -1,0 +1,85 @@
+From: Nelson Elhage <nelhage@nelhage.com>
+Subject: Fix loading save files under FORTIFY_SOURCE.
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1173090
+
+--- a/src/cpu/regs.inc
++++ b/src/cpu/regs.inc
+@@ -457,6 +457,7 @@
+ NEWSYM scrndis,   db 0             ; which background is disabled
+ 
+ ALIGN32
++NEWSYM oamread
+ NEWSYM oamaddr,   dd 0             ; oam address
+ 
+ NEWSYM bg1ptrx,   dd 0             ; pointer to background1
+--- a/src/gblvars.h
++++ b/src/gblvars.h
+@@ -27,13 +27,14 @@
+ extern unsigned int cycpbl;
+ extern unsigned int *wramdata, *vram, PHspcsave, PHdspsave, *C4Ram, *sfxramdata;
+ extern unsigned int PHnum2writesa1reg, SA1Mode, prevedi, SA1xpc, sa1dmaptr;
+-extern unsigned int soundcycleft, spc700read, timer2upd, xa, PHnum2writesfxreg;
+-extern unsigned int opcd, HIRQCycNext, oamaddr, curexecstate, nmiprevaddrl;
++extern unsigned int soundcycleft, timer2upd, xa, PHnum2writesfxreg;
++extern unsigned char spc700read[], xaread[], opcd[], oamread[];
++extern unsigned int HIRQCycNext, oamaddr, curexecstate, nmiprevaddrl;
+ extern unsigned int nmirept, nmiprevline, nmistatus, joycontren;
+ extern unsigned int SfxR0, *setaramdata, ramsize, *sram, nmiprevaddrh;
+ extern unsigned int tempesi, tempedi, tempedx, tempebp;
+ extern unsigned int SPCMultA, PHnum2writespc7110reg, PHdspsave2;
+-extern unsigned char sndrot[], SPCRAM[65472], DSPMem[256], SA1Status, *SA1RAMArea;
++extern unsigned char sndrot[], SPCRAM[65472], DSPMem[256], SA1Status, *SA1RAMArea, *SPCState;
+ extern unsigned char DSP1Enable, DSP1COp, prevoamptr, BRRBuffer[], *romdata;
+ extern unsigned char curcyc, echoon0[], spcnumread, NextLineCache, HIRQNextExe;
+ extern unsigned char vidmemch4[4096], vidmemch8[4096], vidmemch2[4096];
+--- a/src/init.asm
++++ b/src/init.asm
+@@ -295,6 +295,7 @@
+ NEWSYM cpuoverptr, dd 0                 ; pointer to cpuover
+ 
+ ALIGN32
++NEWSYM xaread
+ NEWSYM xa,       dd 0
+ NEWSYM xdb,      dd 0
+ NEWSYM xpb,      dd 0
+--- a/src/initc.c
++++ b/src/initc.c
+@@ -1391,7 +1391,8 @@
+ extern unsigned char pal16bclha[1024];
+ extern unsigned char pal16bxcl[256];
+ extern unsigned char SPCRAM[65472];
++unsigned char *SPCState = SPCRAM;
+
+ extern unsigned char *sram;
+ extern unsigned char *vidbuffer;
+ extern unsigned char *vram;
+--- a/src/zstate.c
++++ b/src/zstate.c
+@@ -105,7 +105,7 @@
+ static void copy_spc_data(unsigned char **buffer, void (*copy_func)(unsigned char **, void *, size_t))
+ {
+   //SPC stuff, DSP stuff
+-  copy_func(buffer, SPCRAM, PHspcsave);
++  copy_func(buffer, SPCState, PHspcsave);
+   copy_func(buffer, BRRBuffer, PHdspsave);
+   copy_func(buffer, DSPMem, sizeof(DSPMem));
+ }
+@@ -121,14 +121,14 @@
+   copy_func(buffer, &nmistatus, 4);
+   copy_func(buffer, &joycontren, 4);
+   copy_func(buffer, &NextLineCache, 1);
+-  copy_func(buffer, &spc700read, 10*4);
++  copy_func(buffer, spc700read, 10*4);
+   copy_func(buffer, &timer2upd, 4);
+-  copy_func(buffer, &xa, 14*4);
++  copy_func(buffer, xaread, 14*4);
+   copy_func(buffer, &spcnumread, 1);
+-  copy_func(buffer, &opcd, 6*4);
++  copy_func(buffer, opcd, 6*4);
+   copy_func(buffer, &HIRQCycNext, 4);
+   copy_func(buffer, &HIRQNextExe, 1);
+-  copy_func(buffer, &oamaddr, 14*4);
++  copy_func(buffer, oamread, 14*4);
+   copy_func(buffer, &prevoamptr, 1);
+ }
+ 
