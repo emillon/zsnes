@@ -17,6 +17,7 @@ zsnes (1.510+bz2-6) UNRELEASED; urgency=low
     Thanks to Ian Munsie. (Closes: #687107)
   * Fix loading states with _FORTIFY_SOURCE enabled.
     Thanks to Nelson Elhage. (Closes: #712790)
+  * Add keywords to desktop file.
 
  -- Fabian Greffrath <fabian+debian@greffrath.com>  Wed, 18 Jul 2012 11:04:28 +0200
 
