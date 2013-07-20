@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-6) UNRELEASED; urgency=low
+zsnes (1.510+bz2-6) unstable; urgency=low
 
   [ Fabian Greffrath ]
   * 0001-gcc-fno-rtti.patch: Removed, one less deviation from upstream.
@@ -21,7 +21,7 @@ zsnes (1.510+bz2-6) UNRELEASED; urgency=low
   * Bump Standards-Version to 3.9.4 (no changes).
   * Canonicalize VCS-* fields.
 
- -- Fabian Greffrath <fabian+debian@greffrath.com>  Wed, 18 Jul 2012 11:04:28 +0200
+ -- Etienne Millon <etienne.millon@gmail.com>  Sat, 20 Jul 2013 12:28:28 +0200
 
 zsnes (1.510+bz2-5) unstable; urgency=low
 
