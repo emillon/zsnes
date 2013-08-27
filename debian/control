@@ -4,7 +4,6 @@ Priority: optional
 Homepage: http://www.zsnes.com
 Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
 Uploaders: Etienne Millon <etienne.millon@gmail.com>,
-           Eshat Cakar <info@eshat.de>,
            Fabian Greffrath <fabian+debian@greffrath.com>
 Build-Depends: debhelper (>= 9),
                dh-autoreconf,

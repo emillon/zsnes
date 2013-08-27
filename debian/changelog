@@ -1,3 +1,10 @@
+zsnes (1.510+bz2-7) UNRELEASED; urgency=low
+
+  [ Eshat Cakar ]
+  * Remove myself from uploaders.
+
+ -- Eshat Cakar <info@eshat.de>  Tue, 27 Aug 2013 14:19:42 +0200
+
 zsnes (1.510+bz2-6) unstable; urgency=low
 
   [ Fabian Greffrath ]
