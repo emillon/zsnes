@@ -1,0 +1,32 @@
+Subject: Fix FTBFS on hurd-i386
+From: Svante Signell <svante.signell@gmail.com>
+Debian-Bug: http://bugs.debian.org/720941
+
+--- a/src/configure.in
++++ b/src/configure.in
+@@ -83,6 +83,9 @@
+   *-*-cygwin* | *-*-*ming*)
+     NFLAGS="$NFLAGS -f win32"
+     ;;
++  *-*-gnu*)
++    NFLAGS="$NFLAGS -f elf -DELF"
++    ;;
+   *)
+     AC_MSG_ERROR(This target is not supported)
+     ;;
+--- a/src/gblhdr.h
++++ b/src/gblhdr.h
+@@ -122,9 +122,13 @@
+ #ifdef linux
+ #include <asm/ioctls.h>
+ #else
++#ifdef __GNU__
++#include <sys/ioctls.h>
++#else
+ #include <sys/filio.h>
+ #endif
+ #endif
++#endif
+ 
+ 
+ #endif
