@@ -1,5 +1,9 @@
 zsnes (1.510+bz2-7) UNRELEASED; urgency=low
 
+  [ Eshat Cakar ]
+  * Remove myself from uploaders.
+
+  [ Etienne Millon ]
   * New patch to fix FTBFS on hurd-i386, thanks to Svante Signell.
     (Closes: #720941)
   * Update my email address.
