@@ -1,2 +1,4 @@
 debian/zsnes.desktop    usr/share/applications
 debian/zsnes.xpm        usr/share/pixmaps
+usr/bin/zsnes
+usr/share/man/man1/zsnes.1
