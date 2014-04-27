@@ -14,3 +14,4 @@ zsnes-linux-resume-freeze-fix.patch
 fortify-source.patch
 fortify-source-load.patch
 hurd.patch
+privacy-breach.patch
