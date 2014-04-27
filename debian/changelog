@@ -14,6 +14,7 @@ zsnes (1.510+bz2-7) UNRELEASED; urgency=low
   * Fix lintian errors:
   - privacy-breach-w3c-valid (remove links)
   - privacy-breach-donation (replace by DEP12)
+  - privacy-breach-logo (remove image tags)
 
  -- Etienne Millon <me@emillon.org>  Tue, 10 Sep 2013 10:09:25 +0200
 
