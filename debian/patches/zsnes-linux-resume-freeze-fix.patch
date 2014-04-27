@@ -25,6 +25,7 @@ Also, remove the unused start2, end2, and update_ticks_pc2 variables.
 Signed-off-by: Ian Munsie <darkstarsword@gmail.com>
 Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=687107
 Origin: http://board.zsnes.com/phpBB3/viewtopic.php?f=3&t=2337&p=225071#p225071
+Last-Update: 2014-04-27
 ---
  src/linux/sdllink.c |   35 ++++++++++++-----------------------
  1 file changed, 12 insertions(+), 23 deletions(-)
@@ -122,7 +123,7 @@ index 4274c9d..eece048 100644
  
    gettimeofday(&now, NULL);
 -  ticks=((float)(now.tv_sec-sem_start.tv_sec))*1000.f+((float)(now.tv_usec-sem_start.tv_usec))*.001f;
-+  ticks = (now.tv_sec - sem_start.tv_sec) * 1000000 +
++  ticks = ((unsigned long long)(now.tv_sec - sem_start.tv_sec)) * 1000000 +
 +	  (now.tv_usec - sem_start.tv_usec);
    return(ticks);
  }
