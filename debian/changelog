@@ -1,4 +1,4 @@
-zsnes (1.510+bz2-7) UNRELEASED; urgency=low
+zsnes (1.510+bz2-7) unstable; urgency=low
 
   [ Eshat Cakar ]
   * Remove myself from uploaders.
@@ -16,7 +16,7 @@ zsnes (1.510+bz2-7) UNRELEASED; urgency=low
   - privacy-breach-donation (replace by DEP12)
   - privacy-breach-logo (remove image tags)
 
- -- Etienne Millon <me@emillon.org>  Tue, 10 Sep 2013 10:09:25 +0200
+ -- Etienne Millon <me@emillon.org>  Tue, 06 May 2014 10:15:30 +0200
 
 zsnes (1.510+bz2-6) unstable; urgency=low
 
