@@ -1,6 +1,7 @@
 Subject: Fix FTBFS on hurd-i386
 From: Svante Signell <svante.signell@gmail.com>
 Debian-Bug: http://bugs.debian.org/720941
+Last-Update: 2014-05-15
 
 --- a/src/configure.in
 +++ b/src/configure.in
@@ -21,7 +22,7 @@ Debian-Bug: http://bugs.debian.org/720941
  #include <asm/ioctls.h>
  #else
 +#ifdef __GNU__
-+#include <sys/ioctls.h>
++#include <sys/ioctl.h>
 +#else
  #include <sys/filio.h>
  #endif

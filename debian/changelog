@@ -1,3 +1,9 @@
+zsnes (1.510+bz2-8) UNRELEASED; urgency=medium
+
+  * Correct typo in hurd.patch (Closes: #720941)
+
+ -- Etienne Millon <me@emillon.org>  Thu, 15 May 2014 23:15:09 +0200
+
 zsnes (1.510+bz2-7) unstable; urgency=low
 
   [ Eshat Cakar ]
